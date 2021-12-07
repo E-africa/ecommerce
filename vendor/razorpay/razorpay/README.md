@@ -59,7 +59,9 @@ The resources can be accessed via the `$api` object. All the methods invocations
 - [Settlements](documents/settlement.md)
 - [Refunds](documents/refund.md)
 - [Invoice](documents/invoice.md)
+- [Item](documents/item.md)
 - [Subscriptions](documents/subscription.md)
+- [Add-on](documents/addon.md)
 - [Payment Links](documents/paymentLink.md)
 - [Smart Collect](documents/virtualaccount.md)
 - [Route](documents/transfer.md)
@@ -70,7 +72,7 @@ The resources can be accessed via the `$api` object. All the methods invocations
 - [UPI](documents/upi.md)
 - [Register Emandate and Charge First Payment Together](documents/registeremandate.md)
 - [Register NACH and Charge First Payment Together](documents/registernach.md)
-
+- [Payment Verification](documents/paymentVerfication.md)
 
 ## Development
 
