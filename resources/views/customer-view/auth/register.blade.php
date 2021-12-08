@@ -116,7 +116,7 @@
                                                name="remember" id="inputCheckd">
                                     </strong>
                                     <label class="" for="remember">{{\App\CPU\translate('i_agree_to_Your_terms')}}<a
-                                            class="font-size-sm" target="_blank" href="{{route('terms')}}">
+                                            class="font-size-sm" target="_blank" href="{{route('terms')}}" style="color: #ff3c20 !important;">
                                             {{\App\CPU\translate('terms_and_condition')}}
                                         </a></label>
                                 </div>
@@ -125,14 +125,14 @@
                             <div class="flex-between row" style="direction: {{ Session::get('direction') }}">
                                 <div class="mx-1">
                                     <div class="text-right">
-                                        <button class="btn btn-primary" id="sign-up" type="submit" disabled>
+                                        <button class="btn btn-dark" id="sign-up" type="submit" disabled>
                                             <i class="czi-user {{Session::get('direction') === "rtl" ? 'ml-2 mr-n1' : 'mr-2 ml-n1'}}"></i>
                                             {{\App\CPU\translate('sing_up')}}
                                         </button>
                                     </div>
                                 </div>
                                 <div class="mx-1">
-                                    <a class="btn btn-outline-primary" href="{{route('customer.auth.login')}}">
+                                    <a class="btn btn-dark" href="{{route('customer.auth.login')}}">
                                         <i class="fa fa-sign-in"></i> {{\App\CPU\translate('sing_in')}}
                                     </a>
                                 </div>

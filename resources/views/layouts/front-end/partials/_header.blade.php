@@ -24,6 +24,30 @@
         line-height: 1.25rem;
     }
 
+    .search_button{
+        background: #ff3c20 !important;
+    }
+
+    #wishlist:hover{
+        background: #ff3c20 !important;
+    }
+
+    #user:hover{
+        background: #ff3c20 !important;
+    }
+
+    #sign-in:hover{
+        background: #ff3c20 !important;
+    }
+
+    .nav-link:hover{
+        color: #ff3c20 !important;
+    }
+
+    #dropdownMenuButton:hover{
+        color: #ff3c20 !important;
+    }
+
     .count-value {
         width: 1.25rem;
         height: 1.25rem;
@@ -58,7 +82,7 @@
         }
 
         .search_button .input-group-text i {
-            color: {{$web_config['primary_color']}}                              !important;
+            color: black !important;
         }
 
         .navbar-expand-md .dropdown-menu > .dropdown > .dropdown-toggle {
@@ -110,13 +134,13 @@
 
 <header class="box-shadow-sm rtl">
     <!-- Topbar-->
-    <div class="topbar">
+    <div class="topbar" style="background: #232f3e !important;">
         <div class="container ">
             <div>
                 @php( $local = \App\CPU\Helpers::default_lang())
                 <div
                     class="topbar-text dropdown disable-autohide {{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}} text-capitalize">
-                    <a class="topbar-link dropdown-toggle" href="#" data-toggle="dropdown">
+                    <a class="topbar-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: #fff !important;">
                         @foreach(json_decode($language['value'],true) as $data)
                             @if($data['code']==$local)
                                 <img class="{{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}" width="20"
@@ -161,24 +185,26 @@
                 @endif
             </div>
             <div class="topbar-text dropdown d-md-none {{Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'}}">
-                <a class="topbar-link" href="tel: {{$web_config['phone']->value}}">
+                <a class="topbar-link" href="tel: {{$web_config['phone']->value}}" style="color: white !important;">
                     <i class="fa fa-phone"></i> {{$web_config['phone']->value}}
                 </a>
             </div>
             <div class="d-none d-md-block {{Session::get('direction') === "rtl" ? 'mr-3' : 'ml-3'}} text-nowrap">
-                <a class="topbar-link d-none d-md-inline-block" href="tel:{{$web_config['phone']->value}}">
-                    <i class="fa fa-phone"></i> {{$web_config['phone']->value}}
+                <a class="topbar-link d-none d-md-inline-block" style="color: #fff !important;" href="tel:{{$web_config['phone']->value}}">
+                    <i class="fa fa-phone-square text-light"></i> {{$web_config['phone']->value}}
                 </a>
             </div>
         </div>
     </div>
+    <hr>
 
-
-    <div class="navbar-sticky bg-light mobile-head">
+    <div class="navbar-sticky bg-light mobile-head" style="background: #232f3e !important;">
         <div class="navbar navbar-expand-md navbar-light">
             <div class="container ">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon">
+                         <i class="fa fa-bars" style="color:#fff; font-size:28px;"></i>
+                    </span>
                 </button>
                 <a class="navbar-brand d-none d-sm-block {{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}} flex-shrink-0 tab-logo"
                    href="{{route('home')}}"
@@ -199,14 +225,14 @@
                 <div class="input-group-overlay d-none d-md-block mx-4"
                      style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}}">
                     <form action="{{route('products')}}" type="submit" class="search_form">
-                        <input class="form-control appended-form-control search-bar-input" type="text"
+                        <input class="form-control appended-form-control search-bar-input text-dark" type="text"
                                autocomplete="off"
                                placeholder="{{\App\CPU\translate('search')}}"
                                name="name">
                         <button class="input-group-append-overlay search_button" type="submit"
                                 style="border-radius: {{Session::get('direction') === "rtl" ? '7px 0px 0px 7px; right: unset; left: 0' : '0px 7px 7px 0px; left: unset; right: 0'}};">
                                 <span class="input-group-text" style="font-size: 20px;">
-                                    <i class="czi-search text-white"></i>
+                                    <i class="fa fa-search text-white"></i>
                                 </span>
                         </button>
                         <input name="data_from" value="search" hidden>
@@ -221,18 +247,18 @@
                 <!-- Toolbar-->
                 <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
                     <a class="navbar-tool navbar-stuck-toggler" href="#">
-                        <span class="navbar-tool-tooltip">Expand menu</span>
-                        <div class="navbar-tool-icon-box">
-                            <i class="navbar-tool-icon czi-menu"></i>
+                        <span class="navbar-tool-tooltip">{{\App\CPU\translate('Expand menu')}}</span>
+                        <div class="navbar-tool-icon-box text-light">
+                            <i class="navbar-tool-icon fa fa-bars"></i>
                         </div>
                     </a>
                     <div class="navbar-tool dropdown {{Session::get('direction') === "rtl" ? 'mr-3' : 'ml-3'}}">
-                        <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="{{route('wishlists')}}">
-                            <span class="navbar-tool-label">
+                        <a class="navbar-tool-icon-box bg-dark dropdown-toggle" id="wishlist" href="{{route('wishlists')}}">
+                            <span class="navbar-tool-label" style="background: #ff3c20 !important;">
                                 <span
                                     class="countWishlist">{{session()->has('wish_list')?count(session('wish_list')):0}}</span>
                            </span>
-                            <i class="navbar-tool-icon czi-heart"></i>
+                            <i class="navbar-tool-icon fa fa-heart text-light"></i>
                         </a>
                     </div>
                     @if(auth('customer')->check())
@@ -247,18 +273,18 @@
                                              class="img-profile rounded-circle">
                                     </div>
                                 </div>
-                                <div class="navbar-tool-text">
-                                    <small>Hello, {{auth('customer')->user()->f_name}}</small>
-                                    Dashboard
+                                <div class="navbar-tool-text text-light">
+                                    <small style="color: #fff !important;">{{\App\CPU\translate('hello')}}, {{auth('customer')->user()->f_name}}</small>
+                                    {{\App\CPU\translate('dashboard')}}
                                 </div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item"
+                                <a class="dropdown-item text-dark"
                                    href="{{route('account-oder')}}"> {{ \App\CPU\translate('my_order')}} </a>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item text-dark"
                                    href="{{route('user-account')}}"> {{ \App\CPU\translate('my_profile')}}</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item text-dark"
                                    href="{{route('customer.auth.logout')}}">{{ \App\CPU\translate('logout')}}</a>
                             </div>
                         </div>
@@ -268,19 +294,19 @@
                                type="button" data-toggle="dropdown" aria-haspopup="true"
                                aria-expanded="false">
                                 <div class="navbar-tool-icon-box bg-secondary">
-                                    <div class="navbar-tool-icon-box bg-secondary">
-                                        <i class="navbar-tool-icon czi-user"></i>
+                                    <div class="navbar-tool-icon-box bg-dark" id="user">
+                                        <i class="navbar-tool-icon czi-user text-light"></i>
                                     </div>
                                 </div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
                                  style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                                <a class="dropdown-item" href="{{route('customer.auth.login')}}">
-                                    <i class="fa fa-sign-in {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i> {{\App\CPU\translate('sing_in')}}
+                                <a class="dropdown-item text-dark" href="{{route('customer.auth.login')}}">
+                                    <i class="fa fa-sign-in fa-2x {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i> {{\App\CPU\translate('sing_in')}}
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{route('customer.auth.register')}}">
-                                    <i class="fa fa-user-circle {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>{{\App\CPU\translate('sing_up')}}
+                                <a class="dropdown-item text-dark" href="{{route('customer.auth.register')}}">
+                                    <i class="fa fa-user-circle fa-2x {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>{{\App\CPU\translate('sing_up')}}
                                 </a>
                             </div>
                         </div>
@@ -307,7 +333,7 @@
                             <button class="input-group-append-overlay search_button" type="submit"
                                     style="border-radius: {{Session::get('direction') === "rtl" ? '7px 0px 0px 7px; right: unset; left: 0' : '0px 7px 7px 0px; left: unset; right: 0'}};">
                             <span class="input-group-text" style="font-size: 20px;">
-                                <i class="czi-search text-white"></i>
+                                <i class="fa fa-search text-white"></i>
                             </span>
                             </button>
                             <diV class="card search-card"
@@ -319,14 +345,14 @@
                     </div>
 
                     @php($categories=\App\CPU\CategoryManager::parents())
-                    <ul class="navbar-nav mega-nav pr-2 pl-2 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}} d-none d-xl-block ">
+                    <ul class="navbar-nav mega-nav pr-2 pl-2 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}} d-none d-xl-block " style="background: #ff3c20 !important;"  >
                         <!--web-->
                         <li class="nav-item {{!request()->is('/')?'dropdown':''}}">
                             <a class="nav-link dropdown-toggle {{Session::get('direction') === "rtl" ? 'pr-0' : 'pl-0'}}"
                                href="#" data-toggle="dropdown" style="{{request()->is('/')?'pointer-events: none':''}}">
-                                <i class="czi-menu align-middle mt-n1 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
-                                <span
-                                    style="margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 40px !important;margin-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 50px">
+                                <i class="czi-menu align-middle mt-n1 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}" style="color: #fff !important;"></i>
+                                <span class="text-light"
+                                      style="margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 40px !important;margin-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 50px">
                                     {{ \App\CPU\translate('categories')}}
                                 </span>
                             </a>
@@ -389,9 +415,9 @@
                                             </li>
                                         @endif
                                     @endforeach
-                                    <a class="dropdown-item" href="{{route('categories')}}"
-                                       style="{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 29%">
-                                        View More
+                                    <a class="dropdown-item font-weight-bold" href="{{route('categories')}}"
+                                       style="{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 25%">
+                                        {{\App\CPU\translate('view_more')}}
                                     </a>
                                 </ul>
                             @else
@@ -458,10 +484,10 @@
                     <ul class="navbar-nav mega-nav1 pr-2 pl-2 d-block d-xl-none"><!--mobile-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{Session::get('direction') === "rtl" ? 'pr-0' : 'pl-0'}}"
-                               href="#" data-toggle="dropdown">
-                                <i class="czi-menu align-middle mt-n1 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
-                                <span
-                                    style="margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 20px !important;">{{ \App\CPU\translate('categories')}}</span>
+                               href="#" data-toggle="dropdown" style="color: black !important;">
+                                <i class="fa fa-bars align-middle mt-n1 text-dark {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
+                                <span class="text-dark"
+                                      style="margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 20px !important;">{{ \App\CPU\translate('categories')}}</span>
                             </a>
                             <ul class="dropdown-menu"
                                 style="right: 0%; text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
@@ -508,11 +534,11 @@
                     <!-- Primary menu-->
                     <ul class="navbar-nav" style="{{Session::get('direction') === "rtl" ? 'padding-right: 0px' : ''}}">
                         <li class="nav-item dropdown {{request()->is('/')?'active':''}}">
-                            <a class="nav-link" href="{{route('home')}}">{{ \App\CPU\translate('Home')}}</a>
+                            <a class="nav-link font-weight-bold" href="{{route('home')}}">{{ \App\CPU\translate('Home')}}</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#"
+                            <a class="nav-link dropdown-toggle font-weight-bold" href="#"
                                data-toggle="dropdown">{{ \App\CPU\translate('brand') }}</a>
                             <ul class="dropdown-menu scroll-bar"
                                 style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
@@ -526,30 +552,41 @@
                                         </div>
                                         <div class="align-baseline">
                                             @if($brand['brand_products_count'] > 0 )
-                                                <span
-                                                    class="count-value px-2">( {{ $brand['brand_products_count'] }} )</span>
+                                                <span class="count-value px-2">( {{ $brand['brand_products_count'] }} )</span>
                                             @endif
                                         </div>
                                     </li>
                                 @endforeach
+                                <li style="border-bottom: 1px solid #e3e9ef; display:flex; justify-content:center; ">
+                                    <div>
+                                        <a class="dropdown-item text-dark font-weight-bold" href="{{route('brands')}}">
+                                            {{ \App\CPU\translate('View_more') }}
+                                        </a>
+                                    </div>
+                                </li>
                             </ul>
                         </li>
+
+                        <li class="nav-item dropdown {{request()->is('/')?'active':''}}">
+                            <a class="nav-link font-weight-bold" href="{{route('sellers')}}">{{ \App\CPU\translate('Sellers')}}</a>
+                        </li>
+
                         @php($seller_registration=\App\Model\BusinessSetting::where(['type'=>'seller_registration'])->first()->value)
                         @if($seller_registration)
                             <li class="nav-item">
                                 <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    <button class="btn dropdown-toggle font-weight-bold" type="button" id="dropdownMenuButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                             style="color: white;margin-top: 5px; padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 0">
-                                        <b>{{ \App\CPU\translate('Seller')}}  {{ \App\CPU\translate('zone')}} </b>
+                                        {{ \App\CPU\translate('Seller')}}  {{ \App\CPU\translate('zone')}}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
                                          style="min-width: 165px !important; text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                                        <a class="dropdown-item" href="{{route('shop.apply')}}">
+                                        <a class="dropdown-item text-dark" href="{{route('shop.apply')}}">
                                             <b>{{ \App\CPU\translate('Become a')}} {{ \App\CPU\translate('Seller')}}</b>
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="{{route('seller.auth.login')}}">
+                                        <a class="dropdown-item text-dark"  href="{{route('seller.auth.login')}}">
                                             <b>{{ \App\CPU\translate('Seller')}}  {{ \App\CPU\translate('login')}} </b>
                                         </a>
                                     </div>
