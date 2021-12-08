@@ -20,13 +20,13 @@
     <link rel="stylesheet" media="screen"
           href="{{asset('public/assets/front-end')}}/vendor/lightgallery.js/dist/css/lightgallery.min.css"/>
     <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/css/toastr.css"/>
-    <!-- Main Theme Styles + Bootstrap-->
+    <!-- Main Theme Styles + Bootstrap -->
     <link rel="stylesheet" media="screen" href="{{asset('public/assets/front-end')}}/css/theme.min.css">
     <link rel="stylesheet" media="screen" href="{{asset('public/assets/front-end')}}/css/slick.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/css/toastr.css"/>
-    <link rel="stylesheet" href="{{asset('public/assets/front-end')}}/css/master.css"/>
+    <link media="all" rel="stylesheet" href="{{asset('public/assets/front-end')}}/css/master.css"/>
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Titillium+Web:wght@400;600;700&display=swap"
         rel="stylesheet">
@@ -36,13 +36,10 @@
 
     {{--dont touch this--}}
     <meta name="_token" content="{{csrf_token()}}">
-    {{--dont touch this--}}
-    <!--to make http ajax request to https-->
+{{--dont touch this--}}
+<!--to make http ajax request to https-->
     <!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
     <style>
-        body {
-            background-color: #f7f8fa94;
-        }
 
         .rtl {
             direction: {{ Session::get('direction') }};
@@ -86,7 +83,7 @@
         }
 
         .navbar-stuck-menu {
-            background-color: {{$web_config['primary_color']}};
+            background-color: #232f3e !important;
             min-height: 0;
             padding-top: 0;
             padding-bottom: 0;
@@ -460,13 +457,13 @@
 
         .btn-outline-accent:hover {
             color: #fff;
-            background-color: {{$web_config['primary_color']}};
-            border-color: {{$web_config['primary_color']}};
+            background-color: #ff3c20;
+            border-color: #ff3c20;
         }
 
         .btn-outline-accent {
-            color: {{$web_config['primary_color']}};
-            border-color: {{$web_config['primary_color']}};
+            color: black;
+            border-color: black;
         }
 
         .text-accent {
@@ -647,7 +644,7 @@
     </style>
 </head>
 <!-- Body-->
-<body class="toolbar-enabled">
+<body class="toolbar-enabled" style="background: #fff !important;">
 <!-- Sign in / sign up modal-->
 @include('layouts.front-end.partials._modals')
 <!-- Navbar-->
@@ -662,7 +659,7 @@
     <div class="row">
         <div class="col-md-12">
             <div id="loading" style="display: none;">
-                <div style="position: fixed;z-index: 9999; left: 40%;top: 37% ;width: 100%">
+                <div class="bg-dark" style="position: fixed;z-index: 9999; left: 40%;top: 37% ;width: 100%">
                     <img width="200"
                          src="{{asset('storage/app/public/company')}}/{{\App\CPU\Helpers::get_business_settings('loader_gif')}}"
                          onerror="this.src='{{asset('public/assets/front-end/img/loader.gif')}}'">
@@ -675,18 +672,18 @@
 
 <!-- Page Content-->
 @yield('content')
-
+<hr>
 <!-- Footer-->
 <!-- Footer-->
 @include('layouts.front-end.partials._footer')
 <!-- Toolbar for handheld devices-->
 <!--<div class="cz-handheld-toolbar" id="toolbar">
     {{--@include('layouts.front-end.partials._toolbar')--}}
-</div>-->
+    </div>-->
 
 <!-- Back To Top Button-->
 <a class="btn-scroll-top" href="#top" data-scroll>
-    <span class="btn-scroll-top-tooltip text-muted font-size-sm mr-2">Top</span><i
+    <span class="btn-scroll-top-tooltip text-light font-size-lg mr-2">Top</span><i
         class="btn-scroll-top-icon czi-arrow-up"> </i>
 </a>
 
@@ -872,7 +869,7 @@
                 currency_code: currency_code
             },
             success: function (data) {
-                toastr.success('Currency changed to' + data.name);
+                toastr.success('{{\App\CPU\translate('Currency changed to')}}' + data.name);
                 location.reload();
             }
         });
@@ -883,7 +880,7 @@
             console.log(response)
             updateNavCart();
             $('#cart-summary').empty().html(response.data);
-            toastr.info('Item has been removed from cart', {
+            toastr.info('{{\App\CPU\translate('Item has been removed from cart')}}', {
                 CloseButton: true,
                 ProgressBar: true
             });
@@ -947,7 +944,7 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'Cart',
-                    text: 'Sorry, the minimum value was reached'
+                    text: '{{\App\CPU\translate('Sorry, the minimum value was reached')}}'
                 });
                 $(this).val($(this).data('oldValue'));
             }
@@ -957,7 +954,7 @@
                 Swal.fire({
                     icon: 'error',
                     title: 'Cart',
-                    text: 'Sorry, stock limit exceeded.'
+                    text: '{{\App\CPU\translate('Sorry, stock limit exceeded')}}.'
                 });
                 $(this).val($(this).data('oldValue'));
             }
@@ -1184,7 +1181,7 @@
 
     function route_alert(route, message) {
         Swal.fire({
-            title: 'Are you sure?',
+            title: '{{\App\CPU\translate('Are you sure')}}?',
             text: message,
             type: 'warning',
             showCancelButton: true,

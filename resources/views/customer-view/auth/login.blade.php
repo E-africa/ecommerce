@@ -53,11 +53,11 @@
 
                                     <label class="" for="remember">{{\App\CPU\translate('remember_me')}}</label>
                                 </div>
-                                <a class="font-size-sm" href="{{route('customer.auth.recover-password')}}">
+                                <a class="font-size-sm" href="{{route('customer.auth.recover-password')}}" style=" color: #ff3c20 !important;">
                                     {{\App\CPU\translate('forgot_password')}}?
                                 </a>
                             </div>
-                            <button class="btn btn-primary btn-block btn-shadow"
+                            <button class="btn btn-dark btn-block btn-shadow"
                                     type="submit">{{\App\CPU\translate('sign_in')}}</button>
                         </form>
                     </div>
@@ -68,7 +68,7 @@
                                     <h6>{{ \App\CPU\translate('no_account_Sign_up_now') }}</h6>
                                 </div>
                                 <div class="mb-3 {{Session::get('direction') === "rtl" ? 'ml-2' : ''}}">
-                                    <a class="btn btn-outline-primary"
+                                    <a class="btn btn-dark text-light"
                                        href="{{route('customer.auth.register')}}">
                                         <i class="fa fa-user-circle"></i> {{\App\CPU\translate('sing_up')}}
                                     </a>

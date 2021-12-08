@@ -1,14 +1,13 @@
-{{--code improved Md. Al imrun Khandakar--}}
 <div class="navbar-tool dropdown {{Session::get('direction') === "rtl" ? 'mr-3' : 'ml-3'}}"
      style="margin-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 6px">
-    <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="{{route('shop-cart')}}">
-        <span class="navbar-tool-label">
+    <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="{{route('shop-cart')}}" style="background: #ff3c20 !important;">
+        <span class="navbar-tool-label text-dark" style="background: #fff !important;">
             @php($cart=\App\CPU\CartManager::get_cart())
             {{$cart->count()}}
         </span>
-        <i class="navbar-tool-icon czi-cart"></i>
+        <i class="navbar-tool-icon text-light czi-cart"></i>
     </a>
-    <a class="navbar-tool-text" href="{{route('shop-cart')}}"><small>{{\App\CPU\translate('my_cart')}}</small>
+    <a class="navbar-tool-text" style="color: #ff3c20 !important;" href="{{route('shop-cart')}}"><small style="color: #fff !important;">{{\App\CPU\translate('my_cart')}}</small>
         {{\App\CPU\Helpers::currency_converter(\App\CPU\CartManager::cart_total_applied_discount(\App\CPU\CartManager::get_cart()))}}
     </a>
     <!-- Cart dropdown-->
@@ -58,7 +57,7 @@
                 <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
                     <div
                         class="font-size-sm {{Session::get('direction') === "rtl" ? 'ml-2 float-left' : 'mr-2 float-right'}} py-2 ">
-                        <span class="">Subtotal :</span>
+                        <span class="">{{\App\CPU\translate('Subtotal')}} :</span>
                         <span
                             class="text-accent font-size-base {{Session::get('direction') === "rtl" ? 'mr-1' : 'ml-1'}}">
                              {{\App\CPU\Helpers::currency_converter($sub_total)}}
@@ -66,16 +65,16 @@
                     </div>
 
                     <a class="btn btn-outline-secondary btn-sm" href="{{route('shop-cart')}}">
-                        Expand cart<i
+                        {{\App\CPU\translate('Expand cart')}}<i
                             class="czi-arrow-{{Session::get('direction') === "rtl" ? 'left mr-1 ml-n1' : 'right ml-1 mr-n1'}}"></i>
                     </a>
                 </div>
                 <a class="btn btn-primary btn-sm btn-block" href="{{route('checkout-details')}}">
-                    <i class="czi-card {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}} font-size-base align-middle"></i>Checkout
+                    <i class="czi-card {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}} font-size-base align-middle"></i>{{\App\CPU\translate('Checkout')}}
                 </a>
             @else
                 <div class="widget-cart-item">
-                    <h6 class="text-danger text-center"><i
+                    <h6 class="text-dark text-center"><i
                             class="fa fa-cart-arrow-down"></i> {{\App\CPU\translate('Empty')}} {{\App\CPU\translate('Cart')}}
                     </h6>
                 </div>
@@ -83,5 +82,4 @@
         </div>
     </div>
 </div>
-{{--code improved Md. Al imrun Khandakar--}}
-{{--to do discount--}}
+
