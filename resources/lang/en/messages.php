@@ -725,4 +725,15 @@
   'like_for_BD_880' => 'Like for BD 880',
   'resubmit' => 'Resubmit',
   'text_updated_successfully' => 'Text updated successfully',
+  'Expand menu' => 'Expand menu',
+  'view_more' => 'View more',
+  'View_more' => 'View more',
+  'Currency changed to' => 'Currency changed to',
+  'Item has been removed from cart' => 'Item has been removed from cart',
+  'Sorry, the minimum value was reached' => 'Sorry  the minimum value was reached',
+  'Sorry, stock limit exceeded' => 'Sorry  stock limit exceeded',
+  'Are you sure' => 'Are you sure',
+  'sub_category_form' => 'Sub category form',
+  'sub_category_table' => 'Sub category table',
+
 );
