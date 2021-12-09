@@ -196,6 +196,7 @@
             </div>
         </div>
     </div>
+    <hr>
 
     <div class="navbar-sticky bg-light mobile-head" style="background: #232f3e !important;">
         <div class="navbar navbar-expand-md navbar-light">
