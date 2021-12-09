@@ -170,12 +170,14 @@
                 @php($currency_model = \App\CPU\Helpers::get_business_settings('currency_model'))
                 @if($currency_model=='multi_currency')
                     <div class="topbar-text dropdown disable-autohide">
-                        <a class="topbar-link dropdown-toggle text-light" href="#" data-toggle="dropdown">
-                            <span>{{session('currency_code')}} {{session('currency_symbol')}}</span>
+                        <a class="topbar-link" href="#" data-toggle="dropdown">
+                            <span class="text-light">{{session('currency_code')}} {{session('currency_symbol')}}</span>
+                            <span class="ml-2 fa fa-sort-desc text-light"></span>
+
                         </a>
                         <ul class="dropdown-menu" style="min-width: 160px!important;">
                             @foreach (\App\Model\Currency::where('status', 1)->get() as $key => $currency)
-                                <li style="cursor: pointer" class="dropdown-item text-light"
+                                <li style="cursor: pointer" class="dropdown-item text-light bg-dark"
                                     onclick="currency_change('{{$currency['code']}}')">
                                     {{ $currency->name }}
                                 </li>
@@ -196,7 +198,6 @@
             </div>
         </div>
     </div>
-    <hr>
 
     <div class="navbar-sticky bg-light mobile-head" style="background: #232f3e !important;">
         <div class="navbar navbar-expand-md navbar-light">
@@ -485,8 +486,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{Session::get('direction') === "rtl" ? 'pr-0' : 'pl-0'}}"
                                href="#" data-toggle="dropdown" style="color: black !important;">
-                                <i class="fa fa-bars align-middle mt-n1 text-dark {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
-                                <span class="text-dark"
+                                <i class="fa fa-bars align-middle mt-n1 text-light {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
+                                <span class="text-light"
                                       style="margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 20px !important;">{{ \App\CPU\translate('categories')}}</span>
                             </a>
                             <ul class="dropdown-menu"
