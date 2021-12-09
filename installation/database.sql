@@ -187,7 +187,7 @@ INSERT INTO `business_settings` (`id`, `type`, `value`, `created_at`, `updated_a
 (17, 'company_email', 'Copy@6amtech.com', NULL, '2021-03-15 12:29:51'),
 (18, 'colors', '{\"primary\":\"#86b672\",\"secondary\":\"#061fe0\"}', '2020-10-11 13:53:02', '2021-05-25 21:43:11'),
 (19, 'company_footer_logo', '2021-02-20-6030c8a02a5f9.png', NULL, '2021-02-20 14:30:24'),
-(20, 'company_copyright_text', 'CopyRight 6amTech@2021', NULL, '2021-03-15 12:30:47'),
+(20, 'company_copyright_text', 'EfrikaShopping © 2021. All Rights Reserved. Designed by EfrikaShopping.Com', NULL, '2021-03-15 12:30:47'),
 (21, 'download_app_apple_stroe', '{\"status\":\"1\",\"link\":\"https:\\/\\/www.target.com\\/s\\/apple+store++now?ref=tgt_adv_XS000000&AFID=msn&fndsrc=tgtao&DFA=71700000012505188&CPNG=Electronics_Portable+Computers&adgroup=Portable+Computers&LID=700000001176246&LNM=apple+store+near+me+now&MT=b&network=s&device=c&location=12&targetid=kwd-81913773633608:loc-12&ds_rl=1246978&ds_rl=1248099&gclsrc=ds\"}', NULL, '2020-12-08 12:54:53'),
 (22, 'download_app_google_stroe', '{\"status\":\"1\",\"link\":\"https:\\/\\/play.google.com\\/store?hl=en_US&gl=US\"}', NULL, '2020-12-08 12:54:48'),
 (23, 'company_fav_icon', '2021-03-02-603df1634614f.png', '2020-10-11 13:53:02', '2021-03-02 14:03:48'),
