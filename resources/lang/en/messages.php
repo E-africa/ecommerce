@@ -735,5 +735,4 @@
   'Are you sure' => 'Are you sure',
   'sub_category_form' => 'Sub category form',
   'sub_category_table' => 'Sub category table',
-
 );
