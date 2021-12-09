@@ -170,12 +170,12 @@
                 @php($currency_model = \App\CPU\Helpers::get_business_settings('currency_model'))
                 @if($currency_model=='multi_currency')
                     <div class="topbar-text dropdown disable-autohide">
-                        <a class="topbar-link dropdown-toggle" href="#" data-toggle="dropdown">
+                        <a class="topbar-link dropdown-toggle text-light" href="#" data-toggle="dropdown">
                             <span>{{session('currency_code')}} {{session('currency_symbol')}}</span>
                         </a>
                         <ul class="dropdown-menu" style="min-width: 160px!important;">
                             @foreach (\App\Model\Currency::where('status', 1)->get() as $key => $currency)
-                                <li style="cursor: pointer" class="dropdown-item"
+                                <li style="cursor: pointer" class="dropdown-item text-light"
                                     onclick="currency_change('{{$currency['code']}}')">
                                     {{ $currency->name }}
                                 </li>

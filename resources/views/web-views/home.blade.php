@@ -422,8 +422,8 @@
                 <div class="col-xl-12">
                     <div class="featured_deal">
                         <div class="row">
-                            <div class="col-xl-3 col-md-4 rtl">
-                                <div class="d-flex align-items-center justify-content-center featured_deal_left">
+                            <div class="col-xl-3 col-md-4 rtl bg-dark">
+                                <div class="d-flex align-items-center justify-content-center featured_deal_left bg-dark">
                                     <h1 class="featured_deal_title">{{ \App\CPU\translate('featured_deal')}}</h1>
                                 </div>
                             </div>
@@ -482,11 +482,11 @@
         <div class="row">
             {{-- Deal of the day/Recommended Product --}}
             <div class="col-xl-3 col-md-4 pb-4 mt-3">
-                <div class="deal_of_the_day">
+                <div class="deal_of_the_day bg-dark">
                     @if(isset($deal_of_the_day))
                         <h1 style="color: white"> {{ \App\CPU\translate('deal_of_the_day') }}</h1>
                         <center>
-                            <strong style="font-size: 21px!important;color: {{$web_config['primary_color']}}">
+                            <strong style="font-size: 21px!important;color: #ff3c20;">
                                 {{$deal_of_the_day->discount_type=='amount'?\App\CPU\Helpers::currency_converter($deal_of_the_day->discount):$deal_of_the_day->discount.' % '}}
                                 OFF
                             </strong>
@@ -498,16 +498,16 @@
                                  alt="">
                         </div>
                         <div style="text-align: center; padding-top: 26px;">
-                            <h5 style="font-weight: 600; color: {{$web_config['primary_color']}}">
+                            <h5 style="font-weight: 600; color: #ff3c20;">
                                 {{substr($deal_of_the_day->product['name'],0,40)}} {{strlen($deal_of_the_day->product['name'])>40?'...':''}}
                             </h5>
-                            <span class="text-accent">
+                            <span class="text-accent" style="color: #ff3c20;">
                                 {{\App\CPU\Helpers::currency_converter(
                                     $deal_of_the_day->product->unit_price-(\App\CPU\Helpers::get_product_discount($deal_of_the_day->product,$deal_of_the_day->product->unit_price))
                                 )}}
                             </span>
                             @if($deal_of_the_day->product->discount > 0)
-                                <strike style="font-size: 12px!important;color: grey!important;">
+                                <strike style="font-size: 12px!important;color: #ff3c20">
                                     {{\App\CPU\Helpers::currency_converter($deal_of_the_day->product->unit_price)}}
                                 </strike>
                             @endif
@@ -529,7 +529,7 @@
                                      alt="">
                             </div>
                             <div style="text-align: center; padding-top: 60px;" class="pb-2">
-                                <button class="buy_btn" onclick="location.href='{{route('product',$product->slug)}}'">
+                                <button class="buy_btn bg-dark" style="color: #ff3c20 !important;" onclick="location.href='{{route('product',$product->slug)}}'">
                                     {{\App\CPU\translate('buy_now')}}
                                 </button>
                             </div>
