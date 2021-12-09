@@ -733,4 +733,6 @@
   'Sorry, the minimum value was reached' => 'Sorry  the minimum value was reached',
   'Sorry, stock limit exceeded' => 'Sorry  stock limit exceeded',
   'Are you sure' => 'Are you sure',
+  'sub_category_form' => 'Sub category form',
+  'sub_category_table' => 'Sub category table',
 );
