@@ -434,7 +434,7 @@
                                     style="width:37%; height: 45px">
                                 {{\App\CPU\translate('buy_now')}}
                             </button>
-                            <button class="btn button"
+                            <button class="btn button text-light"
                                     onclick="addToCart()"
                                     type="button"
                                     style="width:37%; height: 45px">

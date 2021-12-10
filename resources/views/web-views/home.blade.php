@@ -24,6 +24,10 @@
             justify-content:space-between;
         }
 
+        .ptr:hover{
+            color: #ff3c20 !important;
+        }
+
         .cz-countdown-days {
             color: white !important;
             background-color: {{$web_config['primary_color']}};
@@ -721,7 +725,7 @@
                                            href="{{route('product',$product->slug)}}">{{substr($bestSell->product['name'],0,30)}} {{strlen($bestSell->product['name'])>30?'...':''}}</a>
                                     </h6>
                                     <div class="widget-product-meta">
-                                        <span class="text-accent">
+                                        <span class="text-accent" style="color: #ff3c20 !important;">
                                             {{\App\CPU\Helpers::currency_converter(
                                             $bestSell->product->unit_price-(\App\CPU\Helpers::get_product_discount($bestSell->product,$bestSell->product->unit_price))
                                             )}}
