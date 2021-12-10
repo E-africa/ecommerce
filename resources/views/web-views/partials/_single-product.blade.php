@@ -9,7 +9,7 @@
     <div class="card-header inline_product clickable" style="cursor: pointer;max-height: 193px;min-height: 193px">
         @if($product->discount > 0)
             <div class="d-flex justify-content-end for-dicount-div discount-hed" style="right: 0;position: absolute">
-                    <span class="for-discoutn-value" style="color: #ff3c20 !important;">
+                    <span class="for-discoutn-value text-light" style="background-color: #ff3c20 !important;">
                     @if ($product->discount_type == 'percent')
                             {{round($product->discount,2)}}%
                         @elseif($product->discount_type =='flat')
@@ -77,7 +77,7 @@
             @else
                 <a class="btn btn-dark btn-sm btn-block mb-2" href="javascript:"
                    onclick="quickView('{{$product->id}}')">
-                    <i class="czi-eye align-middle {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}" style="color: #ff3c20 !important;"></i>
+                    <i class="czi-eye align-middle {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
                     {{\App\CPU\translate('Quick')}}   {{\App\CPU\translate('View')}}
                 </a>
             @endif

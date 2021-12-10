@@ -69,6 +69,10 @@
 
         }
 
+        .button{
+            background-color: #ff3c20 !important;
+        }
+
         .for-total-price {
             margin- {{Session::get('direction') === "rtl" ? 'right' : 'left'}}: -30%;
         }
@@ -255,11 +259,11 @@
                     </div>
                     <div class="mb-3">
                         <span
-                            class="h3 font-weight-normal text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}">
+                            class="h3 font-weight-normal text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}" style="color: #ff3c20 !important;">
                             {{\App\CPU\Helpers::get_price_range($product) }}
                         </span>
                         @if($product->discount > 0)
-                            <strike style="color: {{$web_config['secondary_color']}};">
+                            <strike style="color: #ff3c20 !important;">
                                 {{\App\CPU\Helpers::currency_converter($product->unit_price)}}
                             </strike>
                         @endif
@@ -425,12 +429,12 @@
                         </div>
 
                         <div class="d-flex justify-content-between mt-2">
-                            <button class="btn btn-secondary" onclick="buy_now()"
+                            <button class="btn btn-dark" onclick="buy_now()"
                                     type="button"
                                     style="width:37%; height: 45px">
                                 {{\App\CPU\translate('buy_now')}}
                             </button>
-                            <button class="btn btn-primary"
+                            <button class="btn button"
                                     onclick="addToCart()"
                                     type="button"
                                     style="width:37%; height: 45px">
@@ -492,7 +496,7 @@
                         <div
                             class="d-flex align-items-center {{Session::get('direction') === "rtl" ? 'pl-4' : 'pr-4'}}">
                             <a href="{{ route('shopView',[$product->seller->id]) }}">
-                                <button class="btn btn-secondary">
+                                <button class="btn btn-dark">
                                     <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                                     {{\App\CPU\translate('Visit')}}
                                 </button>
