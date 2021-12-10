@@ -486,8 +486,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{Session::get('direction') === "rtl" ? 'pr-0' : 'pl-0'}}"
                                href="#" data-toggle="dropdown" style="color: black !important;">
-                                <i class="fa fa-bars align-middle mt-n1 text-light {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
-                                <span class="text-light"
+                                <i class="fa fa-bars align-middle mt-n1 text-dark {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
+                                <span class="text-dark"
                                       style="margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 20px !important;">{{ \App\CPU\translate('categories')}}</span>
                             </a>
                             <ul class="dropdown-menu"
