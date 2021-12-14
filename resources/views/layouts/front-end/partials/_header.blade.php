@@ -170,12 +170,14 @@
                 @php($currency_model = \App\CPU\Helpers::get_business_settings('currency_model'))
                 @if($currency_model=='multi_currency')
                     <div class="topbar-text dropdown disable-autohide">
-                        <a class="topbar-link dropdown-toggle text-light" href="#" data-toggle="dropdown">
-                            <span>{{session('currency_code')}} {{session('currency_symbol')}}</span>
+                        <a class="topbar-link" href="#" data-toggle="dropdown">
+                            <span class="text-light">{{session('currency_code')}} {{session('currency_symbol')}}</span>
+                            <span class="ml-2 fa fa-sort-desc text-light"></span>
+
                         </a>
                         <ul class="dropdown-menu" style="min-width: 160px!important;">
                             @foreach (\App\Model\Currency::where('status', 1)->get() as $key => $currency)
-                                <li style="cursor: pointer" class="dropdown-item text-light"
+                                <li style="cursor: pointer" class="dropdown-item text-light bg-dark"
                                     onclick="currency_change('{{$currency['code']}}')">
                                     {{ $currency->name }}
                                 </li>
@@ -196,7 +198,6 @@
             </div>
         </div>
     </div>
-    <hr>
 
     <div class="navbar-sticky bg-light mobile-head" style="background: #232f3e !important;">
         <div class="navbar navbar-expand-md navbar-light">
@@ -302,11 +303,11 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
                                  style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
                                 <a class="dropdown-item text-dark" href="{{route('customer.auth.login')}}">
-                                    <i class="fa fa-sign-in fa-2x {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i> {{\App\CPU\translate('sing_in')}}
+                                    <i class="fa fa-sign-in fa-2x {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i> {{\App\CPU\translate('sign_in')}}
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-dark" href="{{route('customer.auth.register')}}">
-                                    <i class="fa fa-user-circle fa-2x {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>{{\App\CPU\translate('sing_up')}}
+                                    <i class="fa fa-user-circle fa-2x {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>{{\App\CPU\translate('sign_up')}}
                                 </a>
                             </div>
                         </div>
@@ -348,13 +349,14 @@
                     <ul class="navbar-nav mega-nav pr-2 pl-2 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}} d-none d-xl-block " style="background: #ff3c20 !important;"  >
                         <!--web-->
                         <li class="nav-item {{!request()->is('/')?'dropdown':''}}">
-                            <a class="nav-link dropdown-toggle {{Session::get('direction') === "rtl" ? 'pr-0' : 'pl-0'}}"
+                            <a class="nav-link {{Session::get('direction') === "rtl" ? 'pr-0' : 'pl-0'}}"
                                href="#" data-toggle="dropdown" style="{{request()->is('/')?'pointer-events: none':''}}">
                                 <i class="czi-menu align-middle mt-n1 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}" style="color: #fff !important;"></i>
                                 <span class="text-light"
                                       style="margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 40px !important;margin-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 50px">
                                     {{ \App\CPU\translate('categories')}}
                                 </span>
+                                <span class="ml-2 fa fa-sort-desc text-light"></span>
                             </a>
                             @if(request()->is('/'))
                                 <ul class="dropdown-menu"

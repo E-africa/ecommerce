@@ -9,7 +9,7 @@
     <div class="card-header inline_product clickable" style="cursor: pointer;max-height: 193px;min-height: 193px">
         @if($product->discount > 0)
             <div class="d-flex justify-content-end for-dicount-div discount-hed" style="right: 0;position: absolute">
-                    <span class="for-discoutn-value">
+                    <span class="for-discoutn-value text-light" style="background-color: #ff3c20 !important;">
                     @if ($product->discount_type == 'percent')
                             {{round($product->discount,2)}}%
                         @elseif($product->discount_type =='flat')
@@ -58,7 +58,7 @@
                         {{\App\CPU\Helpers::currency_converter($product->unit_price)}}
                     </strike><br>
                 @endif
-                <span class="text-accent">
+                <span class="text-accent" style="color: #ff3c20 !important;">
                     {{\App\CPU\Helpers::currency_converter(
                         $product->unit_price-(\App\CPU\Helpers::get_product_discount($product,$product->unit_price))
                     )}}
@@ -70,12 +70,12 @@
     <div class="card-body card-body-hidden" style="padding-bottom: 5px!important;">
         <div class="text-center">
             @if(Request::is('product/*'))
-                <a class="btn btn-primary btn-sm btn-block mb-2" href="{{route('product',$product->slug)}}">
-                    <i class="czi-forward align-middle {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
+                <a class="btn btn-dark btn-sm btn-block mb-2" href="{{route('product',$product->slug)}}">
+                    <i class="czi-forward align-middle {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}" style="color: #ff3c20 !important;"></i>
                     {{\App\CPU\translate('View')}}
                 </a>
             @else
-                <a class="btn btn-primary btn-sm btn-block mb-2" href="javascript:"
+                <a class="btn btn-dark btn-sm btn-block mb-2" href="javascript:"
                    onclick="quickView('{{$product->id}}')">
                     <i class="czi-eye align-middle {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>
                     {{\App\CPU\translate('Quick')}}   {{\App\CPU\translate('View')}}

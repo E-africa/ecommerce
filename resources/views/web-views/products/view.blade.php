@@ -330,7 +330,7 @@
                             </div>
 
                             <div class="input-group-overlay input-group-sm mb-2">
-                                <button class="btn btn-primary btn-block"
+                                <button class="btn btn-dark btn-block"
                                         onclick="searchByPrice()">
                                     <span>{{\App\CPU\translate('search')}}</span>
                                 </button>
@@ -520,7 +520,7 @@
                                 </div>
 
                                 <div class="input-group-overlay input-group-sm mb-2">
-                                    <button class="btn btn-primary btn-block"
+                                    <button class="btn btn-dark                                                                                                                                                                                                                         btn-block"
                                             onclick="searchByPrice()">
                                         <span>{{\App\CPU\translate('search')}}</span>
                                     </button>

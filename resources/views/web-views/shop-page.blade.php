@@ -264,7 +264,7 @@
                             @if($seller_id!=0)
                                 @if (auth('customer')->check())
                                     <div class="d-flex">
-                                        <button class="btn btn-primary btn-block" data-toggle="modal"
+                                        <button class="btn btn-dark btn-block" data-toggle="modal"
                                                 data-target="#exampleModal">
                                             <i class="fa fa-envelope" aria-hidden="true"></i>
                                             {{\App\CPU\translate('Contact')}} {{\App\CPU\translate('Seller')}}
@@ -272,7 +272,7 @@
                                     </div>
                                 @else
                                     <div class="d-flex">
-                                        <a href="{{route('customer.auth.login')}}" class="btn btn-primary btn-block">
+                                        <a href="{{route('customer.auth.login')}}" class="btn btn-dark btn-block">
                                             <i class="fa fa-envelope" aria-hidden="true"></i>
                                             {{\App\CPU\translate('Contact')}} {{\App\CPU\translate('Seller')}}
                                         </a>

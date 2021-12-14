@@ -18,7 +18,7 @@
             <div class="col-md-6">
                 <div class="card border-0 box-shadow">
                     <div class="card-body">
-                        <h2 class="h4 mb-1">{{\App\CPU\translate('sing_in')}}</h2>
+                        <h2 class="h4 mb-1">{{\App\CPU\translate('sign_in')}}</h2>
                         <hr class="mt-2">
                         {{-- <h3 class="font-size-base pt-4 pb-2">{{\App\CPU\translate('or_using_form_below')}}</h3> --}}
                         <form class="needs-validation mt-2" autocomplete="off" action="{{route('customer.auth.login')}}"
