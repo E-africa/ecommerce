@@ -46,7 +46,7 @@
                 <label class="badge-style">( {{$product->reviews()->count()}} )</label>
             </span>
         </div>
-        <div style="position: relative;" class="product-title1">
+        <div style="position: relative;" class="product-title1 text-dark">
             <a href="{{route('product',$product->slug)}}">
                 {{ Str::limit($product['name'], 30) }}
             </a>
