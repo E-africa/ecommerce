@@ -351,7 +351,9 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between mt-2">
-                        <button class="btn btn-darkl" onclick="buy_now()"
+
+                        <button class="btn btn-dark" onclick="buy_now()"
+
                                 type="button"
                                 style="width:37%; height: 45px">
                             {{\App\CPU\translate('buy_now')}}
