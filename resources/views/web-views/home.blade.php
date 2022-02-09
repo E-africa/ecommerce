@@ -547,10 +547,7 @@
                             <div class="deal-title">3 Days <br><span>Fast Delivery</span></div>
                         </div>
 
-                        <div class="col-md-3 p-0 text-center">
-                            <img style="height: 29px;" src="{{asset("public/assets/front-end/png/money.png")}}" alt="">
-                            <div class="deal-title">Money Back <br><span>Gurrantey</span></div>
-                        </div>
+
                         <div class="col-md-3 p-0 text-center">
                             <img style="height: 29px;" src="{{asset("public/assets/front-end/png/Genuine.png")}}" alt="">
                             <div class="deal-title">100% Genuine<br><span>Product</span></div>
@@ -773,7 +770,7 @@
                                         </a>
                                     </h6>
                                     <div class="widget-product-meta">
-                                          <span class="text-accent" style="color: #ff3c20 !important;">
+                                          <span class="text-accent">
                                             {{\App\CPU\Helpers::currency_converter(
                                             $product->unit_price-(\App\CPU\Helpers::get_product_discount($product,$product->unit_price))
                                             )}}
@@ -817,7 +814,7 @@
                                         </a>
                                     </h6>
                                     <div class="widget-product-meta">
-                                       <span class="text-accent" style="color: #ff3c20 !important;">
+                                       <span class="text-accent">
                                             {{\App\CPU\Helpers::currency_converter(
                                             $top->product->unit_price-(\App\CPU\Helpers::get_product_discount($top->product,$top->product->unit_price))
                                             )}}
