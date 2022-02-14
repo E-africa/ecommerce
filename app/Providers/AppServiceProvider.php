@@ -61,5 +61,8 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Schema::defaultStringLength(191);
+        if(config('app.debug')!=true) {
+            \URL::forceScheme('https');
+          }
     }
 }
