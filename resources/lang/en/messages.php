@@ -736,4 +736,9 @@
   'sub_category_form' => 'Sub category form',
   'sub_category_table' => 'Sub category table',
   'sign_up' => 'Sign up',
+  'Expand cart' => 'Expand cart',
+  'Checkout' => 'Checkout',
+  'Product Weight' => 'Product Weight',
+  'Package Dimensions' => 'Package Dimensions',
+  'Length * Width' => 'Length * Width',
 );

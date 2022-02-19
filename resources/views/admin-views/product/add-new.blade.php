@@ -124,6 +124,13 @@
                                     </div>
 
                                     <div class="col-md-6">
+                                        <label for="name">{{\App\CPU\translate('Product Weight')}}</label>
+                                        <input type="text" min="0" value="0" step="1"
+                                               placeholder="{{\App\CPU\translate('Product Weight')}}"
+                                               name="current_stock" class="form-control" required>
+                                    </div>
+
+                                    <div class="col-md-6">
                                         <label for="name">{{\App\CPU\translate('Unit')}}</label>
                                         <select
                                             class="js-example-basic-multiple form-control"
@@ -134,6 +141,14 @@
                                             @endforeach
                                         </select>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <label for="name">{{\App\CPU\translate('Package Dimensions')}}</label>
+                                        <input type="text" step="1"
+                                               placeholder="{{\App\CPU\translate('Length * Width')}}"
+                                               name="current_stock" class="form-control" required>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
