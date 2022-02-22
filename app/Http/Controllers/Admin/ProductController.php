@@ -76,6 +76,7 @@ class ProductController extends BaseController
             'tax' => 'required|min:0',
             'unit_price' => 'required|numeric|min:1',
             'purchase_price' => 'required|numeric|min:1',
+
         ], [
             'images.required' => 'Product images is required!',
             'image.required' => 'Product thumbnail is required!',
