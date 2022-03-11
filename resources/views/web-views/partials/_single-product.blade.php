@@ -50,6 +50,9 @@
             <a href="{{route('product',$product->slug)}}">
                 {{ Str::limit($product['name'], 30) }}
             </a>
+            <span>
+                    <img src=https://flagcdn.com/48x36/cd.png alt="..." width="20px" />
+                </span>
         </div>
         <div class="justify-content-between text-center">
             <div class="product-price text-center">
@@ -67,10 +70,7 @@
 
                     )}}
                 </span>
-                    &nbsp;
-                <span>
-                    <img src=https://flagcdn.com/48x36/cd.png alt="..." width="20px" />
-                </span>
+
             </div>
         </div>
     </div>
