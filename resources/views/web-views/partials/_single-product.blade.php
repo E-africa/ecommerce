@@ -56,12 +56,20 @@
                 @if($product->discount > 0)
                     <strike style="font-size: 12px!important;color: grey!important;">
                         {{\App\CPU\Helpers::currency_converter($product->unit_price)}}
-                    </strike><br>
+
+                    </strike>
+                    <br>
+
                 @endif
                 <span class="text-accent" style="color: #ff3c20 !important;">
                     {{\App\CPU\Helpers::currency_converter(
                         $product->unit_price-(\App\CPU\Helpers::get_product_discount($product,$product->unit_price))
+
                     )}}
+                </span>
+                    &nbsp;
+                <span>
+                    <img src=https://flagcdn.com/48x36/cd.png alt="..." width="20px" />
                 </span>
             </div>
         </div>
