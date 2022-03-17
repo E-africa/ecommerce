@@ -149,6 +149,20 @@
                             </div>
                             <!-- End Form Group -->
 
+                            <!-- Form Group -->
+                            <div class="row form-group">
+                                <label for="countryLabel"
+                                       class="col-sm-3 col-form-label input-label mt-3">{{\App\CPU\translate('Country')}}
+                                </label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" class="js-masked-input form-control" name="country" id="countryLabel"
+                                           placeholder="country" aria-label="country"
+                                           value="{{$data->country}}">
+                                </div>
+                            </div>
+                            <!-- End Form Group -->
+
                             <div class="row form-group">
                                 <label for="newEmailLabel"
                                        class="col-sm-3 col-form-label input-label">{{\App\CPU\translate('Email')}}</label>
