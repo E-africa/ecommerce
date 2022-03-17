@@ -81,6 +81,7 @@ class ProductController extends Controller
             'tax' => 'required|min:0',
             'unit_price' => 'required|numeric|min:1',
             'purchase_price' => 'required|numeric|min:1',
+            'weight'=>'weight is required'
         ], [
             'name.required' => 'Product name is required!',
             'category_id.required' => 'category  is required!',
@@ -106,6 +107,8 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->user_id = auth('seller')->id();
+        $product->weight = $request->weight;
+        $product->country_code = auth('seller')->country_code;
         $product->added_by = "seller";
         $product->name = $request->name[array_search('en', $request->lang)];
         $product->slug = Str::slug($request->name[array_search('en', $request->lang)], '-') . '-' . Str::random(6);
