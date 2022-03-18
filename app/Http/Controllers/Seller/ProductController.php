@@ -81,7 +81,7 @@ class ProductController extends Controller
             'tax' => 'required|min:0',
             'unit_price' => 'required|numeric|min:1',
             'purchase_price' => 'required|numeric|min:1',
-            'weight'=>'weight is required'
+
         ], [
             'name.required' => 'Product name is required!',
             'category_id.required' => 'category  is required!',
