@@ -33,6 +33,18 @@
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user" id="exampleLastName" name="l_name" value="{{old('l_name')}}" placeholder="Last Name" required>
                                 </div>
+                                <div class="col-sm-6">
+                                    <label for="name">{{\App\CPU\translate('Country')}}</label>
+.                                    <select
+                                        class="js-example-basic-multiple form-control"
+                                        name="unit">
+                                        @foreach(\App\CPU\Helpers::country() as $y)
+                                            <option
+                                                value="{{$y}}" {{old('unit')==$y? 'selected':''}}>{{$y}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0 mt-4">
