@@ -108,7 +108,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->user_id = auth('seller')->id();
         $product->weight = $request->weight;
-        $product->country_code = auth('seller')->country_code;
+//        $product->country_code = auth('seller')->country_code;
         $product->added_by = "seller";
         $product->name = $request->name[array_search('en', $request->lang)];
         $product->slug = Str::slug($request->name[array_search('en', $request->lang)], '-') . '-' . Str::random(6);
