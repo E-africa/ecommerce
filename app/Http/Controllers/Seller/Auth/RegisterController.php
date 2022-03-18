@@ -23,7 +23,8 @@ class RegisterController extends Controller
         $this->validate($request, [
             'email' => 'required|unique:sellers',
             'password' => 'required|min:8',
-            'country'=>'required'
+            'address'=>'required'
+
         ]);
 
         DB::transaction(function ($r) use ($request) {
@@ -32,7 +33,7 @@ class RegisterController extends Controller
             $seller->l_name = $request->l_name;
             $seller->phone = $request->phone;
             $seller->email = $request->email;
-            $seller->country_code = $request->country;
+
             $seller->image = ImageManager::upload('seller/', 'png', $request->file('image'));
             $seller->password = bcrypt($request->password);
             $seller->status = "pending";
