@@ -152,6 +152,7 @@
                                             @endforeach
                                         </select>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -241,6 +242,7 @@
                                                name="purchase_price" class="form-control"
                                                value={{ \App\CPU\BackEndHelper::usd_to_currency($product->purchase_price) }} required>
                                     </div>
+
                                 </div>
                                 <div class="row pt-4">
                                     <div class="col-md-6">

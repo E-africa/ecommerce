@@ -142,13 +142,6 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <label for="name">{{\App\CPU\translate('Package Dimensions')}}</label>
-                                        <input type="text" step="1"
-                                               placeholder="{{\App\CPU\translate('Length * Width')}}"
-                                               name="current_stock" class="form-control" required>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
