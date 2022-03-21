@@ -741,4 +741,8 @@
   'Product Weight' => 'Product Weight',
   'Package Dimensions' => 'Package Dimensions',
   'Length * Width' => 'Length * Width',
+  'hello' => 'Hello',
+  'dashboard' => 'Dashboard',
+  'Length' => 'Length',
+  'Width' => 'Width',
 );
