@@ -252,6 +252,18 @@ class Helpers
         return $x;
     }
 
+    public static function country()
+    {
+        $y = ['DRC', 'Morocco', 'Nigeria', 'Mozambique', 'Namibia', 'Kenya'];
+        return $y;
+    }
+
+//    public static function country_code()
+//    {
+//        $z = ['+243', '+212', '+234', '+258', '+264', '+254'];
+//        return $z;
+//    }
+
     public static function remove_invalid_charcaters($str)
     {
         return str_ireplace(['\'', '"', ',', ';', '<', '>', '?'], ' ', $str);
