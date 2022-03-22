@@ -35,14 +35,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="name">{{\App\CPU\translate('Country')}}</label>
-.                                    <select
-                                        class="js-example-basic-multiple form-control"
-                                        name="unit">
-                                        @foreach(\App\CPU\Helpers::country() as $y)
-                                            <option
-                                                value="{{$y}}" {{old('unit')==$y? 'selected':''}}>{{$y}}</option>
-                                        @endforeach
-                                    </select>
+.                                   <input type="text" class="form-control form-control-user" id="exampleLastName" name="country" value="{{old('country')}}" placeholder="country" required>
                                 </div>
 
                             </div>
@@ -50,7 +43,7 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0 mt-4">
                                     <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email" value="{{old('email')}}" placeholder="Email Address" required>
                                 </div>
-                                <div class="col-sm-6"><small class="text-danger">( * {{\App\CPU\translate('country_code_is_must')}} {{\App\CPU\translate('like_for_BD_880')}} )</small>
+                                <div class="col-sm-6"><small class="text-success">{ Do Not Include + in The Phone Number }</small>
                                     <input type="number" class="form-control form-control-user" id="exampleInputPhone" name="phone" value="{{old('phone')}}" placeholder="Phone Number" required>
                                 </div>
                             </div>
