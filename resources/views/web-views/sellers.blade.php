@@ -64,7 +64,9 @@
             <section class="col-lg-12">
                 <!-- Products grid-->
                 <div class="row mx-n2" style="min-height: 200px">
+
                     @foreach($sellers as $seller)
+                        @if($seller->seller->status == "approved")
                         <div class="col-lg-2 col-md-2 col-sm-4 col-6 px-2 pb-4 text-center">
                             <div class="card-body shadow">
                                 <a href="{{route('shopView',['id'=>$seller['id']])}}">
@@ -78,6 +80,7 @@
                                 </a>
                             </div>
                         </div>
+                        @endif
                     @endforeach
                 </div>
 
