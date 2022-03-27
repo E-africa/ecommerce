@@ -39,9 +39,9 @@
                                     <select name="country" class="form-control form-control-user " id="country" required>
                                         <option value="Congo">DR Congo</option>
                                         <option value="Kenya">Kenya</option>
-                                        <option value="Namimbia">Namimbia</option>
+                                        <option value="Namibia">Namibia</option>
                                         <option value="Nigeria">Nigeria</option>
-                                        <option value="Morroco">Morroco</option>
+                                        <option value="Morocco">Morocco</option>
                                         <option value="Mozambique">Mozambique</option>
                                     </select>
                                 </div>
