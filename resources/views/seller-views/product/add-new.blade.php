@@ -242,21 +242,21 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="name">{{\App\CPU\translate('Product Weight')}}</label>
-                                        <input type="text" min="0" value="0" step="1"
+                                        <input type="text" min="0" value="0"
                                                placeholder="{{\App\CPU\translate('Product Weight')}}"
-                                               name="current_stock" class="form-control" required>
+                                               name="weight" class="form-control" required>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="name">{{\App\CPU\translate('Package Dimensions')}}</label>
                                         <input type="text" step="1"
                                                placeholder="{{\App\CPU\translate('Length')}}"
-                                               name="current_stock" class="form-control" required>
+                                               name="length" class="form-control" required>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="name">{{\App\CPU\translate('Package Dimensions')}}</label>
                                         <input type="text" step="1"
                                                placeholder="{{\App\CPU\translate('Width')}}"
-                                               name="current_stock" class="form-control" required>
+                                               name="width" class="form-control" required>
                                     </div>
                                 </div>
                             </div>
