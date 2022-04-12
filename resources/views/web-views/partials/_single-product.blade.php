@@ -51,8 +51,8 @@
                 {{ Str::limit($product['name'], 30) }}
             </a>
             <span>
-                    <img src=https://flagcdn.com/48x36/KE.png alt="..." width="20px" />
-{{--                <span>{{$product->seller->email}}</span>--}}
+                    <img src=https://flagcdn.com/48x36/{{$product->seller->country}}.png alt="..." width="20px" />
+
                 </span>
         </div>
         <div class="justify-content-between text-center">
