@@ -23,8 +23,10 @@ class RegisterController extends Controller
         $this->validate($request, [
             'email' => 'required|unique:sellers',
             'password' => 'required|min:8',
+
             'shop_address'=>'required',
             'country'=>'required'
+
         ]);
 
         DB::transaction(function ($r) use ($request) {

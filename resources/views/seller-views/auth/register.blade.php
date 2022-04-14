@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="name">{{\App\CPU\translate('Country')}}</label>
-{{--.                                   <input type="text" class="form-control form-control-user" id="exampleLastName" name="country" value="{{old('country')}}" placeholder="country" required>--}}
+                                   <input type="text" class="form-control form-control-user" id="exampleLastName" name="country" value="{{old('country')}}" placeholder="country" required>--}}
                                     <select name="country" class="form-control form-control-user " id="country" required>
                                         <option value="Congo">DR Congo</option>
                                         <option value="Kenya">Kenya</option>
@@ -44,6 +44,7 @@
                                         <option value="Morocco">Morocco</option>
                                         <option value="Mozambique">Mozambique</option>
                                     </select>
+
                                 </div>
 
                             </div>
