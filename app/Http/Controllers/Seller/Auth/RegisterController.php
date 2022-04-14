@@ -23,7 +23,10 @@ class RegisterController extends Controller
         $this->validate($request, [
             'email' => 'required|unique:sellers',
             'password' => 'required|min:8',
-            'shop_address'=>'required'
+
+            'shop_address'=>'required',
+            'country'=>'required'
+
         ]);
 
         DB::transaction(function ($r) use ($request) {
@@ -32,6 +35,37 @@ class RegisterController extends Controller
             $seller->l_name = $request->l_name;
             $seller->phone = $request->phone;
             $seller->email = $request->email;
+
+
+            switch ($request->country){
+                case('Kenya'):
+                    $seller->country = 'KE';
+                    break;
+
+                case ('Morroco'):
+                    $seller->country = 'MA';
+                    break;
+
+                case ('Congo'):
+                    $seller->country ='CD';
+                    break;
+
+                case ('Namibia'):
+                    $seller->country = 'NA';
+                    break;
+
+                case ('Nigeria'):
+                    $seller->country = 'NG';
+                    break;
+
+                case ('Mozambique'):
+                    $seller->country = 'MZ';
+                    break;
+
+                default:
+                    $seller->country = '';
+
+            }
 
             $seller->image = ImageManager::upload('seller/', 'png', $request->file('image'));
             $seller->password = bcrypt($request->password);

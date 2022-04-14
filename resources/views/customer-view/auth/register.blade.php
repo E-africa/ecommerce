@@ -127,13 +127,13 @@
                                     <div class="text-right">
                                         <button class="btn btn-dark" id="sign-up" type="submit" disabled>
                                             <i class="czi-user {{Session::get('direction') === "rtl" ? 'ml-2 mr-n1' : 'mr-2 ml-n1'}}"></i>
-                                            {{\App\CPU\translate('sing_up')}}
+                                            {{\App\CPU\translate('sign_up')}}
                                         </button>
                                     </div>
                                 </div>
                                 <div class="mx-1">
                                     <a class="btn btn-dark" href="{{route('customer.auth.login')}}">
-                                        <i class="fa fa-sign-in"></i> {{\App\CPU\translate('sing_in')}}
+                                        <i class="fa fa-sign-in"></i> {{\App\CPU\translate('sign_in')}}
                                     </a>
                                 </div>
                                 <div class="col-12 mt-3">
@@ -145,7 +145,7 @@
                                                        href="{{route('customer.auth.service-login', $socialLoginService['login_medium'])}}"
                                                        style="width: 100%">
                                                         <i class="czi-{{ $socialLoginService['login_medium'] }} {{Session::get('direction') === "rtl" ? 'ml-2 mr-n1' : 'mr-2 ml-n1'}}"></i>
-                                                        {{\App\CPU\translate('sing_up_with_'.$socialLoginService['login_medium'])}}
+                                                        {{\App\CPU\translate('sign_up_with_'.$socialLoginService['login_medium'])}}
                                                     </a>
                                                 </div>
                                             @endif
