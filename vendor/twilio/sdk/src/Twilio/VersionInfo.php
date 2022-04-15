@@ -6,8 +6,8 @@ namespace Twilio;
 
 class VersionInfo {
     const MAJOR = 6;
-    const MINOR = 31;
-    const PATCH = 2;
+    const MINOR = 36;
+    const PATCH = 1;
 
     public static function string() {
         return implode('.', array(self::MAJOR, self::MINOR, self::PATCH));
