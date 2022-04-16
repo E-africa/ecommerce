@@ -45,6 +45,7 @@ return array(
     'Symfony\\Bridge\\PsrHttpMessage\\' => array($vendorDir . '/symfony/psr-http-message-bridge'),
     'Svg\\' => array($vendorDir . '/phenx/php-svg-lib/src/Svg'),
     'Stripe\\' => array($vendorDir . '/stripe/stripe-php/lib'),
+    'Sabberworm\\CSS\\' => array($vendorDir . '/sabberworm/php-css-parser/src'),
     'Razorpay\\Tests\\' => array($vendorDir . '/razorpay/razorpay/tests'),
     'Razorpay\\Api\\' => array($vendorDir . '/razorpay/razorpay/src'),
     'Rap2hpoutre\\FastExcel\\' => array($vendorDir . '/rap2hpoutre/fast-excel/src'),
