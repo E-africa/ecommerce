@@ -51,7 +51,7 @@
                 {{ Str::limit($product['name'], 30) }}
             </a>
             <span>
-                    <img src=https://flagcdn.com/48x36/{{strtolower(trans($product->seller->country))}}.png alt="..." width="20px" />
+                    <img src=https://flagcdn.com/48x36/{{$product->seller->country}}.png alt="..." width="20px" />
 
                 </span>
         </div>
