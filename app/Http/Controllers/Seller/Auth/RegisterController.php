@@ -39,27 +39,27 @@ class RegisterController extends Controller
 
             switch ($request->country){
                 case('Kenya'):
-                    $seller->country = 'KE';
+                    $seller->country = 'ke';
                     break;
 
                 case ('Morroco'):
-                    $seller->country = 'MA';
+                    $seller->country = 'ma';
                     break;
 
                 case ('Congo'):
-                    $seller->country ='CD';
+                    $seller->country ='cd';
                     break;
 
                 case ('Namibia'):
-                    $seller->country = 'NA';
+                    $seller->country = 'na';
                     break;
 
                 case ('Nigeria'):
-                    $seller->country = 'NG';
+                    $seller->country = 'ng';
                     break;
 
                 case ('Mozambique'):
-                    $seller->country = 'MZ';
+                    $seller->country = 'mz';
                     break;
 
                 default:
