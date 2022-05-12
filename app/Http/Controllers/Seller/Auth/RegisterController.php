@@ -64,7 +64,6 @@ class RegisterController extends Controller
 
                 default:
                     $seller->country = '';
-
             }
 
             $seller->image = ImageManager::upload('seller/', 'png', $request->file('image'));

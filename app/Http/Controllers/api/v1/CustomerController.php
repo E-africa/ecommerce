@@ -144,8 +144,10 @@ class CustomerController extends Controller
             return response()->json(['errors' => Helpers::error_processor($validator)], 403);
         }
 
+        $user = Helpers::get_customer();
+
         $address = [
-            'customer_id' => $request->user()->id,
+            'customer_id' => now(),
             'contact_person_name' => $request->name,
             'address_type' => $request->address_type,
             'address' => $request->address,

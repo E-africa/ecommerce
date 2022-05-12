@@ -86,7 +86,7 @@ class SystemController extends Controller
             }
 
             $address_id = DB::table('shipping_addresses')->insertGetId([
-                'customer_id' => 0,
+                'customer_id' => auth('customer')->user()->id,
                 'contact_person_name' => $request['contact_person_name'],
                 'address_type' => $request['address_type'],
                 'address' => $request['address'],

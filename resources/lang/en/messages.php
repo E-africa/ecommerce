@@ -745,4 +745,6 @@
   'dashboard' => 'Dashboard',
   'Length' => 'Length',
   'Width' => 'Width',
+  'sign_in_with_google' => 'Sign in with google',
+  'sign_in_with_facebook' => 'Sign in with facebook',
 );
