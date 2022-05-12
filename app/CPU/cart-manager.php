@@ -180,9 +180,9 @@ class CartManager
 
     public static function get_customer_cityname($customer_id){
         $customer = ShippingAddress::find($customer_id);
-        $customer_cityname = $customer->city;
+//        $customer_cityname = $customer->city;
         dd(
-            $customer_cityname
+            $customer
         );
         return $customer_cityname;
     }
