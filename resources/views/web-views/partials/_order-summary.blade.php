@@ -41,6 +41,7 @@
                 {{\App\CPU\Helpers::currency_converter($sub_total)}}
             </span>
         </div>
+        @if(Route::currentRouteName()=="checkout-payment")
                 @php($seller_country_code =\App\CPU\CartManager::get_seller_country_code($cartItem['seller_id']))
                 @php($Seller_city = \App\CPU\CartManager::get_Seller_city($cartItem['seller_id']))
                 @php($product_weight = \App\CPU\CartManager::get_product_weight($cartItem['product_id']))
@@ -49,6 +50,7 @@
                 @php($customer_cityname = \App\CPU\CartManager::get_customer_cityname($cartItem['customer_id']))
                 @php($customer_countrycode = \App\CPU\CartManager::get_customer_country_code($cartItem['customer_id']))
                 @php($Rate = \App\CPU\CartManager::getShippingFee($seller_country_code,$Seller_city,$product_weight,$product_width,$product_length,$customer_cityname,$customer_countrycode))
+        @endif
         <div class="d-flex justify-content-between">
             <span class="cart_title">Tax</span>
             <span class="cart_value">
@@ -57,9 +59,11 @@
         </div>
         <div class="d-flex justify-content-between">
             <span class="cart_title">Shipping</span>
+            @if(Route::currentRouteName()=="checkout-payment")
             <span class="cart_value">
                   {{\App\CPU\Helpers::currency_converter($Rate)}}
             </span>
+            @endif
         </div>
         <div class="d-flex justify-content-between">
             <span class="cart_title">Discount on Product</span>
@@ -92,9 +96,15 @@
         <hr class="mt-2 mb-2">
         <div class="d-flex justify-content-between">
             <span class="cart_title">Total</span>
-            <span class="cart_value">
+           @if(Route::currentRouteName()=="checkout-payment")
+                <span class="cart_value">
                {{\App\CPU\Helpers::currency_converter($sub_total+$total_tax+$Rate-$coupon_dis-$total_discount_on_product)}}
             </span>
+            @else
+            <span class="cart_value">
+               {{\App\CPU\Helpers::currency_converter($sub_total+$total_tax-$coupon_dis-$total_discount_on_product)}}
+            </span>
+            @endif
         </div>
 
         <div class="d-flex justify-content-center">
