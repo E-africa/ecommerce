@@ -164,6 +164,7 @@ class CartManager
     public static function get_product_width($product_id){
 
         $product = Product::find($product_id);
+
         $product_width = $product->width;
 
         if($product_width == null){
@@ -173,22 +174,18 @@ class CartManager
     }
 
     public static function get_shipping_country($customer_id){
-        $customer_country = ShippingAddress::find($customer_id);
-        dd($customer_country);
+        $customer_country = where('customer_id', $customer_id)->first();
         $customer_country = $customer_country->country;
         return $customer_country;
     }
 
     public static function get_customer_cityname($customer_id){
         $customer = ShippingAddress::where('customer_id', $customer_id)->first();
-//        $customer_cityname = $customer->city;
-        dd(
-            $customer
-        );
+        $customer_cityname = $customer->city;
         return $customer_cityname;
     }
     public static function get_customer_country_code($customer_id){
-        $customer = ShippingAddress::find($customer_id);
+        $customer = ShippingAddress::where('customer_id', $customer_id)->first();
         $customer_country = $customer->country;
 
         $lowerCountry = strtolower($customer_country);
