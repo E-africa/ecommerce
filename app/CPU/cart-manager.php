@@ -174,6 +174,7 @@ class CartManager
 
     public static function get_shipping_country($customer_id){
         $customer_country = ShippingAddress::find($customer_id);
+        dd($customer_country);
         $customer_country = $customer_country->country;
         return $customer_country;
     }
