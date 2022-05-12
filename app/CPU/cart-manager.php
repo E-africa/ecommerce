@@ -173,15 +173,17 @@ class CartManager
     }
 
     public static function get_shipping_country($customer_id){
-
         $customer_country = ShippingAddress::find($customer_id);
         $customer_country = $customer_country->country;
         return $customer_country;
     }
 
     public static function get_customer_cityname($customer_id){
-        $customer_cityname = ShippingAddress::find($customer_id);
-        $customer_cityname = $customer_cityname->city;
+        $customer = ShippingAddress::find($customer_id);
+        $customer_cityname = $customer->city;
+        dd(
+            $customer_cityname
+        );
         return $customer_cityname;
     }
     public static function get_customer_country_code($customer_id){
