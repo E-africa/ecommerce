@@ -182,7 +182,7 @@ class CartManager
         $customer = ShippingAddress::find($customer_id);
 //        $customer_cityname = $customer->city;
         dd(
-            $customer_id
+            $customer
         );
         return $customer_cityname;
     }
