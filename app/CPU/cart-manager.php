@@ -180,7 +180,7 @@ class CartManager
     }
 
     public static function get_customer_cityname($customer_id){
-        $customer = ShippingAddress::find($customer_id);
+        $customer = ShippingAddress::where('customer_id', $customer_id)->first();
 //        $customer_cityname = $customer->city;
         dd(
             $customer
