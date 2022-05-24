@@ -37,10 +37,10 @@
                                     <div class="media-body d-flex justify-content-center align-items-center">
                                         <div class="cart_product">
                                             <div class="product-title">
-                                                <a href="{{route('product',$cartItem['slug'])}}">{{$cartItem['name']}}</a>
+                                                <a class="text-dark" href="{{route('product',$cartItem['slug'])}}">{{$cartItem['name']}}</a>
                                             </div>
                                             <div
-                                                class=" text-accent">{{ \App\CPU\Helpers::currency_converter($cartItem['price']-$cartItem['discount']) }}</div>
+                                                class=" text-accent" style="color: #ff3c20 !important;">{{ \App\CPU\Helpers::currency_converter($cartItem['price']-$cartItem['discount']) }}</div>
                                             @if($cartItem['discount'] > 0)
                                                 <strike style="font-size: 12px!important;color: grey!important;">
                                                     {{\App\CPU\Helpers::currency_converter($cartItem['price'])}}
@@ -71,7 +71,7 @@
                             <div
                                 class="col-md-4 col-sm-4 offset-4 offset-sm-0 text-center d-flex justify-content-between align-items-center">
                                 <div class="">
-                                    <div class=" text-accent">
+                                    <div class=" text-accent text-dark">
                                         {{ \App\CPU\Helpers::currency_converter(($cartItem['price']-$cartItem['discount'])*$cartItem['quantity']) }}
                                     </div>
                                 </div>
@@ -138,13 +138,13 @@
         </div>
         <div class="row pt-2">
             <div class="col-6">
-                <a href="{{route('home')}}" class="btn btn-primary">
+                <a href="{{route('home')}}" class="btn text-light" style="background: #ff3c20 !important;">
                     <i class="fa fa-{{Session::get('direction') === "rtl" ? 'forward' : 'backward'}} px-1"></i> {{\App\CPU\translate('continue_shopping')}}
                 </a>
             </div>
             <div class="col-6">
                 <a href="{{route('checkout-details')}}"
-                   class="btn btn-primary pull-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}">
+                   class="btn text-light pull-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}" style="background: #ff3c20 !important;">
                     {{\App\CPU\translate('checkout')}}
                     <i class="fa fa-{{Session::get('direction') === "rtl" ? 'backward' : 'forward'}} px-1"></i>
                 </a>

@@ -42,7 +42,7 @@
                                         <span
                                             class="text-muted {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}">x {{$cartItem['quantity']}}</span>
                                         <span
-                                            class="text-accent {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}">
+                                            class="text-accent {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}" style="color: #ff3c20 !important;">
                                                 {{\App\CPU\Helpers::currency_converter(($cartItem['price']-$cartItem['discount'])*$cartItem['quantity'])}}
                                         </span>
                                     </div>
@@ -59,17 +59,17 @@
                         class="font-size-sm {{Session::get('direction') === "rtl" ? 'ml-2 float-left' : 'mr-2 float-right'}} py-2 ">
                         <span class="">{{\App\CPU\translate('Subtotal')}} :</span>
                         <span
-                            class="text-accent font-size-base {{Session::get('direction') === "rtl" ? 'mr-1' : 'ml-1'}}">
+                            class="text-accent font-size-base text-dark {{Session::get('direction') === "rtl" ? 'mr-1' : 'ml-1'}}">
                              {{\App\CPU\Helpers::currency_converter($sub_total)}}
                         </span>
                     </div>
 
-                    <a class="btn btn-outline-secondary btn-sm" href="{{route('shop-cart')}}">
+                    <a class="btn btn-sm text-light" style="background: #ff3c20 !important;" href="{{route('shop-cart')}}">
                         {{\App\CPU\translate('Expand cart')}}<i
                             class="czi-arrow-{{Session::get('direction') === "rtl" ? 'left mr-1 ml-n1' : 'right ml-1 mr-n1'}}"></i>
                     </a>
                 </div>
-                <a class="btn btn-primary btn-sm btn-block" href="{{route('checkout-details')}}">
+                <a class="btn btn-sm btn-block text-light" style="background: #ff3c20 !important;" href="{{route('checkout-details')}}">
                     <i class="czi-card {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}} font-size-base align-middle"></i>{{\App\CPU\translate('Checkout')}}
                 </a>
             @else

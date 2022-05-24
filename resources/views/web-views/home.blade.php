@@ -770,7 +770,7 @@
                                         </a>
                                     </h6>
                                     <div class="widget-product-meta">
-                                          <span class="text-accent">
+                                          <span class="text-accent" style="color: #ff3c20 !important;">
                                             {{\App\CPU\Helpers::currency_converter(
                                             $product->unit_price-(\App\CPU\Helpers::get_product_discount($product,$product->unit_price))
                                             )}}
@@ -814,7 +814,7 @@
                                         </a>
                                     </h6>
                                     <div class="widget-product-meta">
-                                       <span class="text-accent">
+                                       <span class="text-accent" style="color: #ff3c20 !important;">
                                             {{\App\CPU\Helpers::currency_converter(
                                             $top->product->unit_price-(\App\CPU\Helpers::get_product_discount($top->product,$top->product->unit_price))
                                             )}}

@@ -12,7 +12,7 @@
     .cart_total_value {
         font-weight: 700 !important;
         font-size: 25px !important;
-        color: {{$web_config['primary_color']}}     !important;
+        {{--color: {{$web_config['primary_color']}}     !important;--}}
     }
 </style>
 
@@ -74,7 +74,7 @@
                                required>
                         <div class="invalid-feedback">Please provide coupon code.</div>
                     </div>
-                    <button class="btn btn-primary btn-block" type="button" onclick="couponCode()">Apply Code
+                    <button class="btn btn-block text-light" style="background: #ff3c20 !important;" type="button" onclick="couponCode()">Apply Code
                     </button>
                 </form>
             </div>
