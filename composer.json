@@ -16,7 +16,7 @@
         "ckeditor/ckeditor": "^4.15",
         "doctrine/dbal": "^2.6",
         "fideloper/proxy": "^4.0",
-        "guzzlehttp/guzzle": "6.5.5",
+        "guzzlehttp/guzzle": "*",
         "intervention/image": "^2.5",
         "laravel/framework": "^v6.20.27",
         "laravel/passport": "^v7.5.1",
