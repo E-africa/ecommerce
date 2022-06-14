@@ -19,6 +19,7 @@ $country = array([
     "BS"=> "Bahamas",
     "BH"=> "Bahrain",
     "BD"=> "Bangladesh",
+    "BF"=> "Burkina Faso",
     "BB"=> "Barbados",
     "BY"=> "Belarus",
     "BE"=> "Belgium",

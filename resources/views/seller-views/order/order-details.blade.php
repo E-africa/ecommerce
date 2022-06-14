@@ -88,12 +88,21 @@
 
                     <div class="row">
                         <div class="col-6 mt-4">
+                            
 
 
                         </div>
                         <div class="col-6">
                             <div class="hs-unfold float-right">
-                                <div class="dropdown">
+                            <form action="{{route('shipment')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                                <input type="hidden" name="order_id" value="{{$order->id}}">
+                                <button type="submit" class="btn btn-primary mt-2">
+                                Create Shipment
+                                </button>
+                            </form>
+                            
+                                <div class="dropdown mt-3">
                                     <select name="order_status" onchange="order_status(this.value)"
                                             class="status form-control"
                                             data-id="{{$order['id']}}">

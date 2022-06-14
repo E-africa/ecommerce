@@ -35,8 +35,9 @@ Route::group(['namespace' => 'Seller', 'prefix' => 'seller', 'as' => 'seller.'],
             Route::get('/', 'DashboardController@dashboard')->name('index');
             Route::post('order-stats', 'DashboardController@order_stats')->name('order-stats');
             Route::post('business-overview', 'DashboardController@business_overview')->name('business-overview');
+            
         });
-
+        
         Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
             Route::post('image-upload', 'ProductController@imageUpload')->name('image-upload');
             Route::get('remove-image', 'ProductController@remove_image')->name('remove-image');
