@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\OrderDetail;
+use App\Model\Product;
+use App\Model\Order;
 
 class ShipmentController extends Controller
 {
@@ -37,9 +39,11 @@ class ShipmentController extends Controller
     public function store(Request $request)
     {
         // dd($request->order_id);
-        $order = OrderDetail::where('order_id',$request->order_id);
-        // $product_id = $order->product_id;
-        dd($order->discount);
+        $order = OrderDetail::where('order_id',$request->order_id)->first();
+        $product = Product::where('id', $order->product_id)->first();
+        // dd($product->unit_price);
+        $order_with_customer = Order::where('id', $request->order_id)->first();
+        dd($order_with_customer);
     }
 
     /**

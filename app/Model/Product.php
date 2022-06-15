@@ -15,7 +15,6 @@ class Product extends Model
         'min_qty' => 'integer',
         'published' => 'integer',
         'tax' => 'float',
-        'unit_price' => 'float',
         'status' => 'integer',
         'discount' => 'float',
         'current_stock' => 'integer',
