@@ -608,7 +608,7 @@
                             <img style="vertical-align: middle; padding: 16%"
                                  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                  src="{{asset("storage/app/public/category/$category->icon")}}"
-                                 alt="{{$category->name}}">
+                                 alt="{{$category->name}}">1
                             <p class="text-center small"
                                style="margin-top: -20px">{{Str::limit($category->name, 17)}}</p>
                         </a>
@@ -762,7 +762,7 @@
                                          src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
                                          alt="Product"/>
                                 </a>
-                                <div class="media-body">
+                                <div class="media-body">    1
                                     <h6 class="widget-product-title">
                                         <a class="ptr"
                                            href="{{route('product',$product->slug)}}">
@@ -770,7 +770,7 @@
                                         </a>
                                     </h6>
                                     <div class="widget-product-meta">
-                                          <span class="text-accent">
+                                          <span class="text-accent" style="color: #ff3c20 !important;">
                                             {{\App\CPU\Helpers::currency_converter(
                                             $product->unit_price-(\App\CPU\Helpers::get_product_discount($product,$product->unit_price))
                                             )}}
@@ -814,7 +814,7 @@
                                         </a>
                                     </h6>
                                     <div class="widget-product-meta">
-                                       <span class="text-accent">
+                                       <span class="text-accent" style="color: #ff3c20 !important;">
                                             {{\App\CPU\Helpers::currency_converter(
                                             $top->product->unit_price-(\App\CPU\Helpers::get_product_discount($top->product,$top->product->unit_price))
                                             )}}

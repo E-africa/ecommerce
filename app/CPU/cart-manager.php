@@ -3,13 +3,18 @@
 namespace App\CPU;
 
 use App\Model\Cart;
+use GuzzleHttp\Client;
 use App\Model\CartShipping;
 use App\Model\Color;
 use App\Model\Product;
+use App\Model\Seller;
+use App\Model\ShippingAddress;
 use App\Model\Shop;
 use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Cassandra\Collection;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Http;
 
 class CartManager
 {
@@ -21,6 +26,8 @@ class CartManager
             $storage = [];
             foreach ($cart as $item) {
                 $db_cart = Cart::where(['customer_id' => $user->id, 'seller_id' => $item['seller_id'], 'seller_is' => $item['seller_is']])->first();
+                $seller = Seller::find($item['seller_id']);
+
                 $storage[] = [
                     'customer_id' => $user->id,
                     'cart_group_id' => isset($db_cart) ? $db_cart['cart_group_id'] : str_replace('offline', $user->id, $item['cart_group_id']),
@@ -93,6 +100,354 @@ class CartManager
             $cost = isset($data) ? $data->shipping_cost : 0;
         }
         return $cost;
+    }
+
+    public static function get_seller_country_code($seller_id){
+
+        $seller = Seller::find($seller_id);
+        $seller_country = $seller->country;
+        return Str::upper($seller_country);
+    }
+    public static function get_seller_city($seller_id){
+
+        $seller = Seller::find($seller_id);
+        $seller_country = Str::lower($seller->country);
+
+        $City = "";
+        switch ($seller_country) {
+            case ("ke"):
+                $City = "Nairobi";
+                break;
+            case ("cd"):
+                $City = "Kinshasa";
+                break;
+            case ("mz"):
+                $City = "Maputo";
+                break;
+            case ("na"):
+                $City = "Windhock";
+                break;
+            case ("ma"):
+                $City = "Agadir";
+               break;
+            default:
+                $City = "Kinshasa";
+
+        }
+
+        return $City;
+
+    }
+
+    public static function get_product_weight($product_id){
+
+        $product = Product::find($product_id);
+        $product_weight = $product->weight;
+
+        if($product_weight == null){
+            $product_weight = 5;
+        }
+        return $product_weight;
+    }
+
+    public static function get_product_length($product_id){
+
+        $product = Product::find($product_id);
+        $product_length = $product->length;
+
+        if($product_length == null){
+            $product_length = 5;
+        }
+        return $product_length;
+    }
+
+    public static function get_product_width($product_id){
+
+        $product = Product::find($product_id);
+
+        $product_width = $product->width;
+
+        if($product_width == null){
+            $product_width = 5;
+        }
+        return $product_width;
+    }
+
+    public static function get_shipping_country($customer_id){
+        $customer_country = where('customer_id', $customer_id)->first();
+        $customer_country = $customer_country->country;
+        return $customer_country;
+    }
+
+    public static function get_customer_cityname($customer_id){
+        $customer = ShippingAddress::where('customer_id', $customer_id)->first();
+        $customer_cityname = $customer->city;
+        return $customer_cityname;
+    }
+    public static function get_customer_country_code($customer_id){
+        $customer = ShippingAddress::where('customer_id', $customer_id)->first();
+        $customer_country = $customer->country;
+
+        $lowerCountry = strtolower($customer_country);
+
+        $FinalCountry = ucfirst($lowerCountry);
+
+        $country = array(
+            "AF" => "Afghanistan",
+            "AX"=> "Aland Islands",
+            "AL"=> "Albania",
+            "DZ"=> "Algeria",
+            "AS"=> "American Samoa",
+            "AD"=> "Andorra",
+            "AO"=> "Angola",
+            "AI"=> "Anguilla",
+            "AQ"=> "Antarctica",
+            "AG"=> "Antigua and Barbuda",
+            "AR"=> "Argentina",
+            "AM"=> "Armenia",
+            "AW"=> "Aruba",
+            "AU"=> "Australia",
+            "AT"=> "Austria",
+            "AZ"=> "Azerbaijan",
+            "BS"=> "Bahamas",
+            "BH"=> "Bahrain",
+            "BD"=> "Bangladesh",
+            "BB"=> "Barbados",
+            "BY"=> "Belarus",
+            "BE"=> "Belgium",
+            "BZ"=> "Belize",
+            "BJ"=> "Benin",
+            "BM"=> "Bermuda",
+            "BT"=> "Bhutan",
+            "BO"=> "Bolivia",
+            "BQ"=> "Bonaire, Sint Eustatius and Saba",
+            "BA"=> "Bosnia and Herzegovina",
+            "BW"=> "Botswana",
+            "BV"=> "Bouvet Island",
+            "BR"=> "Brazil",
+            "IO"=> "British Indian Ocean Territory",
+            "BN"=> "Brunei Darussalam",
+            "BG"=> "Bulgaria",
+            "BF"=> "Burkina Faso",
+            "BI"=> "Burundi",
+            "KH"=> "Cambodia",
+            "CM"=> "Cameroon",
+            "CA"=> "Canada",
+            "CV"=> "Cape Verde",
+            "KY"=> "Cayman Islands",
+            "CF"=> "Central African Republic",
+            "TD"=> "Chad",
+            "CL"=> "Chile",
+            "CN"=> "China",
+            "CX"=> "Christmas Island",
+            "CC"=> "Cocos (Keeling) Islands",
+            "CO"=> "Colombia",
+            "KM"=> "Comoros",
+            "CG"=> "Congo",
+            "CD"=> "Congo, The Democratic Republic of ",
+            "CK"=> "Cook Islands",
+            "CR"=> "Costa Rica",
+            "CI"=> "Cote d'Ivoire",
+            "HR"=> "Croatia",
+            "CU"=> "Cuba",
+            "CW"=> "Curaçao",
+            "CY"=> "Cyprus",
+            "CZ"=> "Czechia",
+            "DK"=> "Denmark",
+            "DJ"=> "Djibouti",
+            "DM"=> "Dominica",
+            "DO"=> "Dominican Republic",
+            "EC"=> "Ecuador",
+            "EG"=> "Egypt",
+            "SV"=> "El Salvador",
+            "GQ"=> "Equatorial Guinea",
+            "ER"=> "Eritrea",
+            "EE"=> "Estonia",
+            "ET"=> "Ethiopia",
+            "FK"=> "Falkland Islands (Malvinas)",
+            "FO"=> "Faroe Islands",
+            "FJ"=> "Fiji",
+            "FI"=> "Finland",
+            "FR"=> "France",
+            "GF"=> "French Guiana",
+            "PF"=> "French Polynesia",
+            "TF"=> "French Southern Territories",
+            "GA"=> "Gabon",
+            "GM"=> "Gambia",
+            "GE"=> "Georgia",
+            "DE"=> "Germany",
+            "GH"=> "Ghana",
+            "GI"=> "Gibraltar",
+            "GR"=> "Greece",
+            "GL"=> "Greenland",
+            "GD"=> "Grenada",
+            "GP"=> "Guadeloupe",
+            "GU"=> "Guam",
+            "GT"=> "Guatemala",
+            "GG"=> "Guernsey",
+            "GN"=> "Guinea",
+            "GW"=> "Guinea-Bissau",
+            "GY"=> "Guyana",
+            "HT"=> "Haiti",
+            "HM"=> "Heard and Mc Donald Islands",
+            "VA"=> "Holy See (Vatican City State)",
+            "HN"=> "Honduras",
+            "HK"=> "Hong Kong",
+            "HU"=> "Hungary",
+            "IS"=> "Iceland",
+            "IN"=> "India",
+            "ID"=> "Indonesia",
+            "IR"=> "Iran, Islamic Republic of",
+            "IQ"=> "Iraq",
+            "IE"=> "Ireland",
+            "IM"=> "Isle of Man",
+            "IL"=> "Israel",
+            "IT"=> "Italy",
+            "JM"=> "Jamaica",
+            "JP"=> "Japan",
+            "JE"=> "Jersey",
+            "JO"=> "Jordan",
+            "KZ"=> "Kazakstan",
+            "KE"=> "Kenya",
+            "KI"=> "Kiribati",
+            "KP"=> "Korea, Democratic People's Republic of",
+            "KR"=> "Korea, Republic of",
+            "XK"=> "Kosovo (temporary code)",
+            "KW"=> "Kuwait",
+            "KG"=>"Kyrgyzstan",
+            "LA"=> "Lao, People's Democratic Republic",
+            "LV"=> "Latvia",
+            "LB"=> "Lebanon",
+            "LS"=> "Lesotho",
+            "LR"=> "Liberia",
+            "LY"=> "Libyan Arab Jamahiriya",
+            "LI"=> "Liechtenstein",
+            "LT"=> "Lithuania",
+            "LU"=> "Luxembourg",
+            "MO"=> "Macao",
+            "MK"=> "Macedonia, The Former Yugoslav Republic Of",
+            "MG"=> "Madagascar",
+            "MW"=> "Malawi",
+            "MY"=> "Malaysia",
+            "MV"=> "Maldives",
+            "ML"=> "Mali",
+            "MT"=> "Malta",
+            "MH"=> "Marshall Islands",
+            "MQ"=> "Martinique",
+            "MR"=> "Mauritania",
+            "MU"=> "Mauritius",
+            "YT"=> "Mayotte",
+            "MX"=> "Mexico",
+            "FM"=> "Micronesia, Federated States of",
+            "MD"=> "Moldova, Republic of",
+            "MC"=> "Monaco",
+            "MN"=> "Mongolia",
+            "ME"=> "Montenegro",
+            "MS"=> "Montserrat",
+            "MA"=> "Morocco",
+            "MZ"=> "Mozambique",
+            "MM"=> "Myanmar",
+            "NA"=> "Namibia",
+            "NR"=> "Nauru",
+            "NP"=> "Nepal",
+            "NL"=> "Netherlands",
+            "AN"=> "Netherlands Antilles",
+            "NC"=> "New Caledonia",
+            "NZ"=> "New Zealand",
+            "NI"=> "Nicaragua",
+            "NE"=> "Niger",
+            "NG"=> "Nigeria",
+            "NU"=> "Niue",
+            "NF"=> "Norfolk Island",
+            "MP"=> "Northern Mariana Islands",
+            "NO"=> "Norway",
+            "OM"=> "Oman",
+            "PK"=> "Pakistan",
+            "PW"=> "Palau",
+            "PS"=> "Palestinian Territory, Occupied",
+            "PA"=> "Panama",
+            "PG"=> "Papua New Guinea",
+            "PY"=> "Paraguay",
+            "PE"=> "Peru",
+            "PH"=> "Philippines",
+            "PN"=> "Pitcairn",
+            "PL"=> "Poland",
+            "PT"=> "Portugal",
+            "PR"=> "Puerto Rico",
+            "QA"=> "Qatar",
+            "RS"=> "Republic of Serbia",
+            "RE"=> "Reunion",
+            "RO"=> "Romania",
+            "RU"=> "Russia Federation",
+            "RW"=> "Rwanda",
+            "BL"=> "Saint Barthélemy",
+            "SH"=> "Saint Helena",
+            "KN"=> "Saint Kitts & Nevis",
+            "LC"=> "Saint Lucia",
+            "MF"=> "Saint Martin",
+            "PM"=> "Saint Pierre and Miquelon",
+            "VC"=> "Saint Vincent and the Grenadines",
+            "WS"=> "Samoa",
+            "SM"=> "San Marino",
+            "ST"=> "Sao Tome and Principe",
+            "SA"=> "Saudi Arabia",
+            "SN"=> "Senegal",
+            "CS"=> "Serbia and Montenegro",
+            "SC"=> "Seychelles",
+            "SL"=> "Sierra Leone",
+            "SG"=> "Singapore",
+            "SX"=> "Sint Maarten",
+            "SK"=> "Slovakia",
+            "SI"=> "Slovenia",
+            "SB"=> "Solomon Islands",
+            "SO"=> "Somalia",
+            "ZA"=> "South Africa",
+            "GS"=> "South Georgia & The South Sandwich Islands",
+            "SS"=> "South Sudan",
+            "ES"=> "Spain",
+            "LK"=> "Sri Lanka",
+            "SD"=> "Sudan",
+            "SR"=> "Suriname",
+            "SJ"=> "Svalbard and Jan Mayen",
+            "SZ"=> "Swaziland",
+            "SE"=> "Sweden",
+            "CH"=> "Switzerland",
+            "SY"=> "Syrian Arab Republic",
+            "TW"=> "Taiwan, Province of China",
+            "TJ"=> "Tajikistan",
+            "TZ"=> "Tanzania, United Republic of",
+            "TH"=> "Thailand",
+            "TL"=> "Timor-Leste",
+            "TG"=> "Togo",
+            "TK"=> "Tokelau",
+            "TO"=> "Tonga",
+            "TT"=> "Trinidad and Tobago",
+            "TN"=> "Tunisia",
+            "TR"=> "Turkey",
+            "XT"=> "Turkish Rep N Cyprus (temporary code)",
+            "TM"=> "Turkmenistan",
+            "TC"=> "Turks and Caicos Islands",
+            "TV"=> "Tuvalu",
+            "UG"=> "Uganda",
+            "UA"=> "Ukraine",
+            "AE"=> "United Arab Emirates",
+            "GB"=> "United Kingdom",
+            "US"=> "United States",
+            "UM"=> "United States Minor Outlying Islands",
+            "UY"=> "Uruguay",
+            "UZ"=> "Uzbekistan",
+            "VU"=> "Vanuatu",
+            "VE"=> "Venezuela",
+            "VN"=> "Vietnam",
+            "VG"=> "Virgin Islands, British",
+            "VI"=> "Virgin Islands, U.S.",
+            "WF"=> "Wallis and Futuna",
+            "EH"=> "Western Sahara",
+            "YE"=> "Yemen",
+            "ZM"=> "Zambia",
+            "ZW"=> "Zimbabwe");
+
+        return array_search($FinalCountry,$country);
     }
 
     public static function cart_total($cart)
@@ -338,5 +693,112 @@ class CartManager
             'qty' => $qty,
             'message' => $status == 1 ? translate('successfully_updated!') : translate('sorry_stock_is_limited')
         ];
+    }
+
+    public static function getShippingFee($seller_country_code,$Seller_city,$product_weight,$product_width,$product_length,$customer_cityname,$customer_countrycode){
+
+        $client = new \GuzzleHttp\Client([
+                'headers'=>array('Content-Type'=>'application/json'),
+                'auth' => ['afrikamallCD', 'S!4nJ^2jX^9qB@3y'],
+            ]);
+
+        $url = "https://express.api.dhl.com/mydhlapi/test/rates";
+
+        $body = array (
+            'customerDetails' =>
+                array (
+                    'shipperDetails' =>
+                        array (
+                            'postalCode' => '',
+                            'cityName' => $Seller_city,
+                            'countryCode' => $seller_country_code,
+                            'addressLine1' => 'addres1',
+                            'addressLine2' => 'addres2',
+                            'addressLine3' => 'addres3',
+                            'countyName' => 'Kinshasa',
+                        ),
+                    'receiverDetails' =>
+                        array (
+                            'postalCode' => '14800',
+                            'cityName' => $customer_cityname,
+                            'countryCode' => $customer_countrycode,
+                            'provinceCode' => $customer_countrycode,
+                            'addressLine1' => 'addres1',
+                            'addressLine2' => 'addres2',
+                            'addressLine3' => 'addres3',
+                            'countyName' => $customer_cityname,
+                        ),
+                ),
+            'accounts' =>
+                array (
+                    0 =>
+                        array (
+                            'typeCode' => 'shipper',
+                            'number' => '318014863',
+                        ),
+                ),
+            'productCode' => 'P',
+            'localProductCode' => 'P',
+            'valueAddedServices' =>
+                array (
+                    0 =>
+                        array (
+                            'serviceCode' => 'II',
+                            'localServiceCode' => 'II',
+                            'value' => 100,
+                            'currency' => 'GBP',
+                            'method' => 'cash',
+                        ),
+                ),
+            'payerCountryCode' => 'CD',
+            'plannedShippingDateAndTime' => '2022-02-18T13:00:00GMT+00:00',
+            'unitOfMeasurement' => 'metric',
+            'isCustomsDeclarable' => true,
+            'monetaryAmount' =>
+                array (
+                    0 =>
+                        array (
+                            'typeCode' => 'declaredValue',
+                            'value' => 100,
+                            'currency' => 'GBP',
+                        ),
+                ),
+            'requestAllValueAddedServices' => false,
+            'returnStandardProductsOnly' => false,
+            'nextBusinessDay' => false,
+            'productTypeCode' => 'all',
+            'packages' =>
+                array (
+                    0 =>
+                        array (
+                            'weight' => $product_weight,
+                            'dimensions' =>
+                                array (
+                                    'length' => $product_length,
+                                    'width' => $product_width,
+                                    'height' => 15,
+                                ),
+                        ),
+                ),
+        );
+
+        $res = $client->post($url,array(
+            'json'=> $body
+        ));
+
+        $Returned_array = $res->getBody()->getContents();
+        $Res1 = json_decode($Returned_array);
+
+//        dd($Res1);
+
+        foreach ($Res1->products as $product){
+            foreach ($product->totalPrice as $TotalPrice){
+                if($TotalPrice->priceCurrency == "USD"){
+                    $return =  $TotalPrice->price;
+                }
+            }
+        }
+
+   return $return;
     }
 }

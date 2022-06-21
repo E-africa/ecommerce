@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderDetail extends Model
 {
-    protected $casts = [
-        'product_id' => 'integer',
-        'order_id' => 'integer',
-        'price' => 'float',
-        'discount' => 'float',
-        'qty' => 'integer',
-        'tax' => 'float',
-        'shipping_method_id' => 'integer',
-        'seller_id' => 'integer',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'product_id' => 'integer',
+    //     'order_id' => 'integer',
+    //     'price' => 'float',
+    //     'discount' => 'float',
+    //     'qty' => 'integer',
+    //     'tax' => 'float',
+    //     'shipping_method_id' => 'integer',
+    //     'seller_id' => 'integer',
+    //     'created_at' => 'datetime',
+    //     'updated_at' => 'datetime',
+    // ];
 
     public function product()
     {

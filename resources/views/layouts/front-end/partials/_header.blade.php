@@ -210,7 +210,7 @@
                 <a class="navbar-brand d-none d-sm-block {{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}} flex-shrink-0 tab-logo"
                    href="{{route('home')}}"
                    style="min-width: 7rem;">
-                    <img width="250" height="60" style="height: 60px!important;"
+                    <img width="250" height="60" position="fixed" style="height: 60px!important;" class="col-lg-12 col-md-3 col-sm-6"
                          src="{{asset("storage/app/public/company")."/".$web_config['web_logo']->value}}"
                          onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                          alt="{{$web_config['name']->value}}"/>
