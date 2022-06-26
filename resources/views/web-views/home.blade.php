@@ -243,7 +243,7 @@
     </section>
 
     {{--flash deal--}}
-    @php($flash_deals=\App\Model\FlashDeal::with(['products.product.reviews'])->where(['status'=>1])->where(['deal_type'=>'flash_deal'])->whereDate('start_date','<=',date('Y-m-d'))->whereDate('end_date','>=',date('Y-m-d'))->first())
+    @php($flash_deals=\App\Model \FlashDeal::with(['products.product.reviews'])->where(['status'=>1])->where(['deal_type'=>'flash_deal'])->whereDate('start_date','<=',date('Y-m-d'))->whereDate('end_date','>=',date('Y-m-d'))->first())
 
     @if (isset($flash_deals))
         <div class="container">
@@ -408,7 +408,7 @@
         <!-- Grid-->
             <div class="row mt-2 mb-3">
                 @foreach($featured_products as $product)
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-2">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-6 mb-2">
                         @include('web-views.partials._single-product',['product'=>$product])
                         {{--<hr class="d-sm-none">--}}
                     </div>
