@@ -117,6 +117,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->user_id = auth('seller')->id();
+
         $product->weight = $request->weight;
         $product->height = $request->height;
         $product->width = $request->width;
@@ -124,6 +125,7 @@ class ProductController extends Controller
         $product->currency = $request->currency;
         $product->interprice = $request->unit_price;
 //        $product->country_code = auth('seller')->country_code;
+
         $product->added_by = "seller";
         $product->name = $request->name[array_search('en', $request->lang)];
         $product->slug = Str::slug($request->name[array_search('en', $request->lang)], '-') . '-' . Str::random(6);
@@ -241,6 +243,12 @@ class ProductController extends Controller
         $product->discount_type = $request->discount_type;
         $product->attributes = json_encode($request->choice_attributes);
         $product->current_stock = $request->current_stock;
+        $product->weight = $request->weight;
+        $product->length = $request->length;
+        $product->height = $request->height;
+        $product->width = $request->width;
+        $product->Interprice = $request->Convert::usd($request->unit_price);
+
 
         $product->meta_title = $request->meta_title;
         $product->meta_description = $request->meta_description;

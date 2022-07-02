@@ -173,6 +173,26 @@ class CartManager
         return $product_width;
     }
 
+    public static function get_customer_postalCode($customer_id){
+        $customer = ShippingAddress::where('customer_id', $customer_id)->first();
+        return $customer->zip;
+    }
+
+    public static function get_customer_mobileNumber($customer_id){
+        $customer = ShippingAddress::where('customer_id', $customer_id)->first();
+        return $customer->phone;
+    }
+
+    public static function get_customer_name($customer_id){
+        $customer = ShippingAddress::where('customer_id', $customer_id)->first();
+        return $customer->contact_person_name;
+    }
+
+    public static function get_customer_email($customer_id){
+        $customer = ShippingAddress::where('customer_id', $customer_id)->first();
+        return $customer->contact_person_name;
+    }
+
     public static function get_shipping_country($customer_id){
         $customer_country = where('customer_id', $customer_id)->first();
         $customer_country = $customer_country->country;
@@ -776,7 +796,7 @@ class CartManager
                                 array (
                                     'length' => $product_length,
                                     'width' => $product_width,
-                                    'height' => 15,
+                                    'height' => 5,
                                 ),
                         ),
                 ),
@@ -800,5 +820,289 @@ class CartManager
         }
 
    return $return;
+    }
+
+
+    public static function createShipment($height,$width,$length,$weight,$customer_email,$customer_fullname,$customer_mobile,$Date,$sellerCity,$sellerCountry,$customer_cityname,$sellerPhone,$sellerName,$sellerEmail,$customer_countrycode,$customer_postalCode){
+
+
+        dd($Date);
+        $client = new \GuzzleHttp\Client([
+            'headers'=>array('Content-Type'=>'application/json'),
+            'auth' => ['afrikamallCD', 'S!4nJ^2jX^9qB@3y'],
+        ]);
+
+        $url = "https://express.api.dhl.com/mydhlapi/test/shipments";
+
+        $body = array(
+            "productCode" => "P",
+            "plannedShippingDateAndTime" => $Date,
+            "pickup" => array(
+                "pickupDetails" => array(
+                    "postalAddress" => array(
+                        "cityName" => $sellerCity,
+                        "countryCode" => $sellerCountry,
+                        "postalCode" => "",
+                        "addressLine1" => $sellerCity,
+                        "countyName" => $sellerCity
+                    ),
+                    "contactInformation" => array(
+                        "mobilePhone" => $sellerPhone,
+                        "phone" => $sellerPhone,
+                        "companyName" => "Efrika",
+                        "fullName" => $sellerName,
+                        "email" => $sellerEmail
+                    )
+                ),
+                "isRequested" => false
+            ),
+            "outputImageProperties" => array(
+                "encodingFormat" => "pdf",
+                "imageOptions" => array(
+                    array(
+                        "templateName" => "ECOM26_84_A4_001",
+                        "typeCode" => "label"
+                    ),
+                    array(
+                        "templateName" => "ARCH_8X4_A4_002",
+                        "isRequested" => true,
+                        "typeCode" => "waybillDoc",
+                        "hideAccountNumber" => true
+                    ),
+                    array(
+                        "typeCode" => "invoice",
+                        "isRequested" => true,
+                        "invoiceType" => "commercial",
+                        "languageCode" => "eng",
+                        "templateName" => "COMMERCIAL_INVOICE_P_10"
+                    )
+                ),
+                "allDocumentsInOneImage" => true
+            ),
+            "accounts" => array(
+                array(
+                    "number" => "318014863",
+                    "typeCode" => "shipper"
+                )
+            ),
+            "customerDetails" => array(
+                "shipperDetails" => array(
+                    "postalAddress" => array(
+                        "cityName" => $sellerCity,
+                        "countryCode" => $sellerCountry,
+                        "postalCode" => "",
+                        "addressLine1" => $sellerCity,
+                        "countyName" => $sellerCity
+                    ),
+                    "contactInformation" => array(
+                        "mobilePhone" => $sellerPhone,
+                        "phone" => $sellerPhone,
+                        "companyName" => "Efrika",
+                        "fullName" => $sellerName,
+                        "email" => $sellerEmail
+                    )
+                ),
+                "receiverDetails" => array(
+                    "postalAddress" => array(
+                        "cityName" => $customer_cityname,
+                        "countryCode" => $customer_countrycode,
+                        "postalCode" => $customer_postalCode,
+                        "addressLine1" => $customer_cityname,
+                        "countyName" => $customer_cityname
+                    ),
+                    "contactInformation" => array(
+                        "mobilePhone" => $customer_mobile,
+                        "phone" => $customer_mobile,
+                        "companyName" => "Efrika",
+                        "fullName" => $customer_fullname,
+                        "email" => $customer_email
+                    )
+                )
+            ),
+            "content" => array(
+                "unitOfMeasurement" => "metric",
+                "isCustomsDeclarable" => true,
+                "incoterm" => "DAP",
+                "description" => "Test",
+                "packages" => array(
+                    array(
+                        "customerReferences" => array(
+                            array(
+                                "value" => "Test Ref"
+                            )
+                        ),
+                        "weight" => $weight,
+                        "description" => "test desciption.",
+                        "labelDescription" => "test label description",
+                        "dimensions" => array(
+                            "length" => $length,
+                            "width" => $width,
+                            "height" => $height
+                        )
+                    )
+                ),
+                "declaredValueCurrency" => "USD",
+                "declaredValue" => 10,
+                "exportDeclaration" => array(
+                    "lineItems" => array(
+                        array(
+                            "number" => 1,
+                            "description" => "Test Product",
+                            "price" => 0.4,
+                            "priceCurrency" => "USD",
+                            "quantity" => array(
+                                "value" => 25,
+                                "unitOfMeasurement" => "KG"
+                            ),
+                            "commodityCodes" => array(
+                                array(
+                                    "typeCode" => "inbound",
+                                    "value" => "08031000"
+                                )
+                            ),
+                            "exportReasonType" => "permanent",
+                            "manufacturerCountry" => "KE",
+                            "weight" => array(
+                                "netValue" => 25,
+                                "grossValue" => 25
+                            )
+                        )
+                    ),
+                    "invoice" => array(
+                        "number" => "12345-ABC",
+                        "date" => "2021-06-25",
+                        "signatureName" => "Test",
+                        "signatureTitle" => "Manager."
+                    ),
+                    "remarks" => array(
+                        array(
+                            "value" => "declaration remark"
+                        )
+                    ),
+                    "additionalCharges" => array(
+                        array(
+                            "value" => 10,
+                            "typeCode" => "freight"
+                        )
+                    ),
+                    "destinationPortName" => "Prague",
+                    "payerVATNumber" => "12345ED",
+                    "recipientReference" => "recipient reference",
+                    "exporter" => array(
+                        "id" => "123",
+                        "code" => "EXPCZ"
+                    ),
+                    "packageMarks" => "marks",
+                    "declarationNotes" => array(
+                        array(
+                            "value" => "up to three declaration notes"
+                        )
+                    ),
+                    "exportReference" => "export reference",
+                    "exportReason" => "permanent",
+                    "licenses" => array(
+                        array(
+                            "typeCode" => "export",
+                            "value" => "license"
+                        )
+                    )
+                )
+            )
+        );
+
+
+        $res = $client->post($url,array(
+            'json'=> $body
+        ));
+
+        return json_decode($res->getBody()->getContents());
+
+    }
+
+
+    public static function OrderPickUp($height,$width,$length,$weight,$Date,$sellerCity,$sellerCountry,$sellerPhone,$sellerName,$sellerEmail){
+        $client = new \GuzzleHttp\Client([
+            'headers'=>array('Content-Type'=>'application/json'),
+            'auth' => ['afrikamallCD', 'S!4nJ^2jX^9qB@3y'],
+        ]);
+
+        $url = "https://express.api.dhl.com/mydhlapi/test/pickups";
+
+        $body = array (
+            'plannedPickupDateAndTime' => $Date,
+            'closeTime' => '18:00',
+            'location' => 'reception',
+            'locationType' => 'business',
+            'accounts' =>
+                array (
+                    0 =>
+                        array (
+                            'typeCode' => 'shipper',
+                            'number' => '318014863',
+                        ),
+                ),
+            'customerDetails' =>
+                array (
+                    'shipperDetails' =>
+                        array (
+                            'postalAddress' =>
+                                array (
+                                    'postalCode' => '',
+                                    'cityName' => $sellerCity,
+                                    'countryCode' => $sellerCountry,
+                                    'provinceCode' => $sellerCity,
+                                    'addressLine1' => $sellerCity,
+                                    'addressLine2' => 'addres2',
+                                    'addressLine3' => 'addres3',
+                                    'countyName' => $sellerCity,
+                                ),
+                            'contactInformation' =>
+                                array (
+                                    'email' => $sellerEmail,
+                                    'phone' => $sellerPhone,
+                                    'mobilePhone' => $sellerPhone,
+                                    'companyName' => 'EfrikaMall',
+                                    'fullName' => $sellerName,
+                                ),
+                        ),
+                ),
+            'shipmentDetails' =>
+                array (
+                    0 =>
+                        array (
+                            'productCode' => 'N',
+                            'accounts' =>
+                                array (
+                                    0 =>
+                                        array (
+                                            'typeCode' => 'shipper',
+                                            'number' => '318014863',
+                                        ),
+                                ),
+                            'isCustomsDeclarable' => false,
+                            'unitOfMeasurement' => 'metric',
+                            'packages' =>
+                                array (
+                                    0 =>
+                                        array (
+                                            'weight' => $weight,
+                                            'dimensions' =>
+                                                array (
+                                                    'length' => $length,
+                                                    'width' => $width,
+                                                    'height' => $height,
+                                                ),
+                                        ),
+                                ),
+                        ),
+                ),
+        );
+
+        $res = $client->post($url,array(
+            'json'=> $body
+        ));
+
+        return json_decode($res->getBody()->getContents());
+
     }
 }

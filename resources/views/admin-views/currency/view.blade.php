@@ -16,6 +16,8 @@
                         href="{{route('admin.dashboard')}}">{{\App\CPU\translate('Dashboard')}}</a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">{{\App\CPU\translate('Currency')}}</li>
+
+                <a href="{{route('updateExchangeRates')}}" class="float-right ml-auto"><button class=" btn-primary">Update Exchange Rates</button></a>
             </ol>
         </nav>
         <!-- Page Heading -->

@@ -88,20 +88,14 @@
 
                     <div class="row">
                         <div class="col-6 mt-4">
-                            
+
 
 
                         </div>
                         <div class="col-6">
                             <div class="hs-unfold float-right">
-                            <form action="{{route('shipment')}}" method="post" enctype="multipart/form-data">
-                            @csrf
-                                <input type="hidden" name="order_id" value="{{$order->id}}">
-                                <button type="submit" class="btn btn-primary mt-2">
-                                Create Shipment
-                                </button>
-                            </form>
-                            
+
+
                                 <div class="dropdown mt-3">
                                     <select name="order_status" onchange="order_status(this.value)"
                                             class="status form-control"
@@ -301,7 +295,10 @@
                             <!-- End Media -->
                                 <hr>
                             @endif
-                        @endforeach
+
+
+
+
                         @php($shipping=$order['shipping_cost'])
                         @php($coupon_discount=$order['discount_amount'])
                         <div class="row justify-content-md-end mb-3">
@@ -408,48 +405,35 @@
                             <hr>
 
                             <div class="d-flex justify-content-between align-items-center">
-                                <h5>{{\App\CPU\translate('shipping_address')}}</h5>
+                                <h5>Shipping</h5>
+
 
                             </div>
                             <div class="flex-start">
-                                <div>{{\App\CPU\translate('Name')}} :</div>
                                 <div class="mx-1">
-                                    <strong>{{$order->shippingAddress ? $order->shippingAddress['contact_person_name'] : "empty"}}</strong>
+                                    <form action="{{route('shipment')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="order_id" value="{{$order->id}}">
+                                        <input type="hidden" name="customer_email" value="{{$order->customer['email']}}">
+                                        <button type="submit" class="btn btn-primary btn-xs mt-1">
+                                            Create Shipment
+                                        </button>
+                                    </form>
+                             @if($order->shipment == "created")
+                                    <form action="{{route('download')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="order_id" value="{{$order->id}}">
+                                        <button type="submit" class="btn btn-xs">download files</button>
+                                    </form>
+                                 @endif
+                                    @if($detail->orderPickUp)
+                                    <span>PickUpNumber :{{$detail->orderPickUp}}</span>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="flex-start">
-                                <div>{{\App\CPU\translate('Country')}} :</div>
-                                <div class="mx-1">
-                                    <strong>{{$order->shippingAddress ? $order->shippingAddress['country'] : "Empty"}}</strong>
-                                </div>
-                            </div>
-                            <div class="flex-start">
-                                <div>{{\App\CPU\translate('City')}} :</div>
-                                <div class="mx-1">
-                                    <strong>{{$order->shippingAddress ? $order->shippingAddress['city'] : "Empty"}}</strong>
-                                </div>
-                            </div>
-                            <div class="flex-start">
-                                <div>{{\App\CPU\translate('zip_code')}} :</div>
-                                <div class="mx-1">
-                                    <strong> {{$order->shippingAddress ? $order->shippingAddress['zip']  : "Empty"}}</strong>
-                                </div>
-                            </div>
-                            <div class="flex-start">
-                                <div>{{\App\CPU\translate('address')}} </div>
-                                <div class="mx-1"><strong>
-                                        : {{$order->shippingAddress ? $order->shippingAddress['address']  : "Empty"}}</strong>
-                                </div>
-                            </div>
-                            <div class="flex-start">
-                                <div>{{\App\CPU\translate('Phone')}} :</div>
-                                <div class="mx-1">
-                                    <strong>{{$order->shippingAddress ? $order->shippingAddress['phone']  : "Empty"}}</strong>
-                                </div>
-                            </div>
-
                         </div>
                 @endif
+                @endforeach
                 <!-- End Body -->
                 </div>
                 <!-- End Card -->
