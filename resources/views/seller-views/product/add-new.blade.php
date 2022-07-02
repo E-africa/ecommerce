@@ -213,7 +213,7 @@
 
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <label for="name">{{\App\CPU\translate('Brand')}}</label>
                                         <select
                                             class="js-example-basic-multiple js-states js-example-responsive form-control"
@@ -225,7 +225,19 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <label for="name">{{\App\CPU\translate('Base Currency')}}</label>
+                                        <select
+                                            class="js-example-basic-multiple form-control"
+                                            name="currency">
+                                            @foreach(\App\CPU\Helpers::currency() as $z)
+                                                <option
+                                                    value="{{$z}}" {{old('currency')==$z? 'selected':''}}>{{$z}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4">
                                         <label for="name">{{\App\CPU\translate('Unit')}}</label>
                                         <select
                                             class="js-example-basic-multiple form-control"
@@ -240,24 +252,32 @@
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label for="name">{{\App\CPU\translate('Product Weight')}}</label>
-                                        <input type="text" min="0" value="0"
+                                        <input type="text" step="1"
                                                placeholder="{{\App\CPU\translate('Product Weight')}}"
                                                name="weight" class="form-control" required>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label for="name">{{\App\CPU\translate('Package Dimensions')}}</label>
                                         <input type="text" step="1"
                                                placeholder="{{\App\CPU\translate('Length')}}"
                                                name="length" class="form-control" required>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label for="name">{{\App\CPU\translate('Package Dimensions')}}</label>
                                         <input type="text" step="1"
                                                placeholder="{{\App\CPU\translate('Width')}}"
                                                name="width" class="form-control" required>
                                     </div>
+
+                                    <div class="col-md-3">
+                                        <label for="name">{{\App\CPU\translate('Product Dimensions')}}</label>
+                                        <input type="text" step="1"
+                                               placeholder="{{\App\CPU\translate('Height')}}"
+                                               name="height" class="form-control" required>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

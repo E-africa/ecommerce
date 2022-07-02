@@ -81,6 +81,11 @@ class ProductController extends Controller
             'tax' => 'required|min:0',
             'unit_price' => 'required|numeric|min:1',
             'purchase_price' => 'required|numeric|min:1',
+            'currency' => 'required',
+            'height' => 'required',
+            'length' => 'required',
+            'width' => 'required',
+            'weight' => 'required',
 
         ], [
             'name.required' => 'Product name is required!',
@@ -89,6 +94,11 @@ class ProductController extends Controller
             'image.required' => 'Product thumbnail is required!',
             'brand_id.required' => 'brand  is required!',
             'unit.required' => 'Unit  is required!',
+            'currency.required' => 'Currency is required',
+            'weight.required' => 'Product weight is required',
+            'height.required' => 'Product height is required',
+            'length.required' => 'Product length is required',
+            'width.required' => 'Product width is required',
         ]);
 
         if ($request['discount_type'] == 'percent') {
@@ -107,7 +117,12 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->user_id = auth('seller')->id();
-//        $product->weight = $request->weight;
+        $product->weight = $request->weight;
+        $product->height = $request->height;
+        $product->width = $request->width;
+        $product->length = $request->length;
+        $product->currency = $request->currency;
+        $product->interprice = $request->unit_price;
 //        $product->country_code = auth('seller')->country_code;
         $product->added_by = "seller";
         $product->name = $request->name[array_search('en', $request->lang)];
@@ -352,11 +367,20 @@ class ProductController extends Controller
             'tax' => 'required|min:0',
             'unit_price' => 'required|numeric|min:1',
             'purchase_price' => 'required|numeric|min:1',
+            'currency' => 'required',
+            'weight' => 'required',
+            'height' => 'required',
+            'length' => 'required',
+            'width' => 'required',
         ], [
             'name.required' => 'Product name is required!',
             'category_id.required' => 'category  is required!',
             'brand_id.required' => 'brand  is required!',
             'unit.required' => 'Unit  is required!',
+            'currency.required' => 'Currency is required',
+            'height.required' => 'Product height is required',
+            'length.required' => 'Product length is required',
+            'width.required' => 'Product width is required',
         ]);
 
         if ($request['discount_type'] == 'percent') {
@@ -492,6 +516,13 @@ class ProductController extends Controller
         $product->attributes = json_encode($request->choice_attributes);
         $product->discount_type = $request->discount_type;
         $product->current_stock = $request->current_stock;
+
+        $product->height = $request->height;
+        $product->weight = $request->weight;
+        $product->width = $request->width;
+        $product->length = $request->length;
+        $product->currency = $request->currency;
+
 
         $product->meta_title = $request->meta_title;
         $product->meta_description = $request->meta_description;

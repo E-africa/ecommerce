@@ -252,6 +252,12 @@ class Helpers
         return $x;
     }
 
+    public static function currency()
+    {
+        $z = ['KES', 'CDF', 'NGN', 'MAD', 'NAD', 'MZN', 'EUR'];
+        return $z;
+    }
+
     public static function country()
     {
         $y = ['DRC', 'Morocco', 'Nigeria', 'Mozambique', 'Namibia', 'Kenya'];
