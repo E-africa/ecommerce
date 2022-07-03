@@ -247,7 +247,7 @@ class ProductController extends Controller
         $product->length = $request->length;
         $product->height = $request->height;
         $product->width = $request->width;
-        $product->Interprice = $request->Convert::usd($request->unit_price);
+//        $product->Interprice = $request->Convert::usd($request->unit_price);
 
 
         $product->meta_title = $request->meta_title;
