@@ -189,7 +189,7 @@ class ShipmentController extends Controller
 
         foreach ($KenyanProducts as $product ){
             $id = $product->id;
-            $price = round($product->Interprice/$KenyanConst);
+            $price = round($product->interprice/$KenyanConst);
             DB::update('update products set unit_price = ? where id = ?',
                 [$price, $id]);
         }
@@ -197,7 +197,7 @@ class ShipmentController extends Controller
         //Morroco
         foreach ($MorroccoProducts as $product ){
             $id = $product->id;
-            $price = round($product->Interprice/$MorrocoConst);
+            $price = round($product->interprice/$MorrocoConst);
             DB::update('update products set unit_price = ? where id = ?',
                 [$price, $id]);
         }
@@ -206,7 +206,7 @@ class ShipmentController extends Controller
         //Update CongoProducts
         foreach ($CongoProducts as $product ){
             $id = $product->id;
-            $price = round($product->Interprice/$CongoConst);
+            $price = round($product->interprice/$CongoConst);
             DB::update('update products set unit_price = ? where id = ?',
                 [$price, $id]);
         }
@@ -214,7 +214,7 @@ class ShipmentController extends Controller
         //Update NigeriaProducts
         foreach ($NigeriaProducts as $product ){
             $id = $product->id;
-            $price = round($product->Interprice/$NigeriaConst);
+            $price = round($product->interprice/$NigeriaConst);
             DB::update('update products set unit_price = ? where id = ?',
                 [$price, $id]);
         }
@@ -222,7 +222,7 @@ class ShipmentController extends Controller
         //Update NamibiaProducts
         foreach ($NamibiaProducts as $product ){
             $id = $product->id;
-            $price = round($product->Interprice/$NamibiaConst);
+            $price = round($product->interprice/$NamibiaConst);
             DB::update('update products set unit_price = ? where id = ?',
                 [$price, $id]);
         }
@@ -230,7 +230,7 @@ class ShipmentController extends Controller
         //Update MozambiqueProducts
         foreach ($MozambiqueProducts as $product ){
             $id = $product->id;
-            $price = round($product->Interprice/$MozambiqueConst);
+            $price = round($product->interprice/$MozambiqueConst);
             DB::update('update products set unit_price = ? where id = ?',
                 [$price, $id]);
         }
@@ -238,7 +238,7 @@ class ShipmentController extends Controller
         //Update BurkinafasoProducts
         foreach ($BurkinafasoProducts as $product ){
             $id = $product->id;
-            $price = round($product->Interprice/$BurkinafasoConst);
+            $price = round($product->interprice/$BurkinafasoConst);
             DB::update('update products set unit_price = ? where id = ?',
                 [$price, $id]);
         }
