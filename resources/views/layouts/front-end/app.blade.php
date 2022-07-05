@@ -671,7 +671,10 @@
 {{--loader--}}
 
 <!-- Page Content-->
+
 @yield('content')
+
+
 <hr>
 <!-- Footer-->
 <!-- Footer-->

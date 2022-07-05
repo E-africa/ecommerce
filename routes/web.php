@@ -39,6 +39,8 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
     Route::get('sellers', 'WebController@all_sellers')->name('sellers');
     Route::get('seller-profile/{id}', 'WebController@seller_profile')->name('seller-profile');
     Route::post('/shipment', 'ShipmentController@store')->name('shipment');
+    Route::post('/download', 'ShipmentController@download')->name('download');
+    Route::get('/updateCurrency','ShipmentController@exchangeRates')->name('updateExchangeRates');
 
     Route::get('flash-deals/{id}', 'WebController@flash_deals')->name('flash-deals');
     Route::get('terms', 'WebController@termsandCondition')->name('terms');

@@ -749,4 +749,8 @@
   'sign_in_with_facebook' => 'Sign in with facebook',
   'sign_up_with_google' => 'Sign up with google',
   'sign_up_with_facebook' => 'Sign up with facebook',
+  'Base Currency' => 'Base Currency',
+  'Product Height' => 'Product Height',
+  'Height' => 'Height',
+  'Product Dimensions' => 'Product Dimensions',
 );
