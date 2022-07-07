@@ -225,7 +225,7 @@
                         @php($discount=0)
                         @php($tax=0)
                         @foreach($order->details as $key=>$detail)
-                        
+
                             @if($detail->product)
                                 @if ($key==0)
                                     @if($detail->product->added_by=='admin')
@@ -258,7 +258,7 @@
                                                    aria-expanded="false"></i>
                                             </p>
                                         </div>
-                                        
+
                                         @php($seller = App\Model\Seller::with('shop')->find($detail->seller_id))
                                         <div class="collapse" id="sellerInfoCollapse-{{ $detail->id }}">
                                             <div class="row card-body mb-3">
@@ -439,25 +439,37 @@
 
 
                             <div class="d-flex justify-content-between align-items-center">
-                                <h5>{{\App\CPU\translate('shipping_address')}}</h5>
+{{--                                <h5>{{\App\CPU\translate('shipping_address')}}</h5>--}}
+                              @if($order->payment_status == "paid")
+
+                                    <form action="{{route('shipment')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="order_id" value="{{$order->id}}">
+                                        <input type="hidden" name="customer_email" value="{{$order->customer['email']}}">
+                                        <button type="submit" class="btn btn-primary btn-xs mt-1">
+                                            Create Shipment
+                                        </button>
+                                    </form>
+
+                               @endif
 
                             </div>
 
-                            <span class="d-block">
-                                    {{\App\CPU\translate('Name')}} :
-                                <strong>{{$order->shippingAddress ? $order->shippingAddress['contact_person_name'] : "empty"}}</strong><br>
-                                 {{\App\CPU\translate('Country')}}:
-                                <strong>{{$order->shippingAddress ? $order->shippingAddress['country'] : "Empty"}}</strong><br>
-                                {{\App\CPU\translate('City')}}:
-                                <strong>{{$order->shippingAddress ? $order->shippingAddress['city'] : "Empty"}}</strong><br>
-                                {{\App\CPU\translate('zip_code')}} :
-                                <strong>{{$order->shippingAddress ? $order->shippingAddress['zip']  : "Empty"}}</strong><br>
-                                {{\App\CPU\translate('address')}} :
-                                <strong>{{$order->shippingAddress ? $order->shippingAddress['address']  : "Empty"}}</strong><br>
-                                {{\App\CPU\translate('Phone')}}:
-                                <strong>{{$order->shippingAddress ? $order->shippingAddress['phone']  : "Empty"}}</strong>
+{{--                            <span class="d-block">--}}
+{{--                                    {{\App\CPU\translate('Name')}} :--}}
+{{--                                <strong>{{$order->shippingAddress ? $order->shippingAddress['contact_person_name'] : "empty"}}</strong><br>--}}
+{{--                                 {{\App\CPU\translate('Country')}}:--}}
+{{--                                <strong>{{$order->shippingAddress ? $order->shippingAddress['country'] : "Empty"}}</strong><br>--}}
+{{--                                {{\App\CPU\translate('City')}}:--}}
+{{--                                <strong>{{$order->shippingAddress ? $order->shippingAddress['city'] : "Empty"}}</strong><br>--}}
+{{--                                {{\App\CPU\translate('zip_code')}} :--}}
+{{--                                <strong>{{$order->shippingAddress ? $order->shippingAddress['zip']  : "Empty"}}</strong><br>--}}
+{{--                                {{\App\CPU\translate('address')}} :--}}
+{{--                                <strong>{{$order->shippingAddress ? $order->shippingAddress['address']  : "Empty"}}</strong><br>--}}
+{{--                                {{\App\CPU\translate('Phone')}}:--}}
+{{--                                <strong>{{$order->shippingAddress ? $order->shippingAddress['phone']  : "Empty"}}</strong>--}}
 
-                                </span>
+{{--                                </span>--}}
 
                         </div>
                 @endif

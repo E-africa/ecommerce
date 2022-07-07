@@ -12,6 +12,7 @@ use App\Model\ShippingAddress;
 use App\Model\Shop;
 use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Cassandra\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
@@ -823,10 +824,10 @@ class CartManager
     }
 
 
-    public static function createShipment($height,$width,$length,$weight,$customer_email,$customer_fullname,$customer_mobile,$Date,$sellerCity,$sellerCountry,$customer_cityname,$sellerPhone,$sellerName,$sellerEmail,$customer_countrycode,$customer_postalCode){
+    public static function createShipment($height,$width,$length,$weight,$customer_email,$customer_fullname,$customer_mobile,$Date,$sellerCity,$sellerCountry,$customer_cityname,$sellerPhone,$sellerName,$sellerEmail,$customer_countrycode,$customer_postalCode,$dhlAccount){
 
 
-        dd($Date);
+//        dd($Date);
         $client = new \GuzzleHttp\Client([
             'headers'=>array('Content-Type'=>'application/json'),
             'auth' => ['afrikamallCD', 'S!4nJ^2jX^9qB@3y'],
@@ -881,7 +882,7 @@ class CartManager
             ),
             "accounts" => array(
                 array(
-                    "number" => "318014863",
+                    "number" => "$dhlAccount",
                     "typeCode" => "shipper"
                 )
             ),
@@ -1020,7 +1021,7 @@ class CartManager
     }
 
 
-    public static function OrderPickUp($height,$width,$length,$weight,$Date,$sellerCity,$sellerCountry,$sellerPhone,$sellerName,$sellerEmail){
+    public static function OrderPickUp($height,$width,$length,$weight,$Date,$sellerCity,$sellerCountry,$sellerPhone,$sellerName,$sellerEmail,$dhlAccount){
         $client = new \GuzzleHttp\Client([
             'headers'=>array('Content-Type'=>'application/json'),
             'auth' => ['afrikamallCD', 'S!4nJ^2jX^9qB@3y'],
@@ -1038,7 +1039,7 @@ class CartManager
                     0 =>
                         array (
                             'typeCode' => 'shipper',
-                            'number' => '318014863',
+                            'number' => "$dhlAccount",
                         ),
                 ),
             'customerDetails' =>
@@ -1076,7 +1077,7 @@ class CartManager
                                     0 =>
                                         array (
                                             'typeCode' => 'shipper',
-                                            'number' => '318014863',
+                                            'number' => "$dhlAccount",
                                         ),
                                 ),
                             'isCustomsDeclarable' => false,
@@ -1104,5 +1105,10 @@ class CartManager
 
         return json_decode($res->getBody()->getContents());
 
+    }
+
+    public static function get_dhl_account($seller_country){
+        $Account =  DB::select('select number from dhlaccounts where country = ? ', [$seller_country]);
+        return $Account[0]->number;
     }
 }

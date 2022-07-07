@@ -81,10 +81,18 @@ class ShipmentController extends Controller
         $height = $product->height;
         $width = $product->width;
 
-        $Date = gmdate("Y-m-d")."T".gmdate('h:m:s')." GMT+01:00";
+        $dhlAccount = \App\CPU\CartManager::get_dhl_account($sellerCountry);
+
+        $DateShipping = gmdate("Y-m-d",strtotime(' +1 day'))."T".gmdate('H:m:s')." GMT+01:00";
+
+        $DatePickUp = gmdate("Y-m-d",strtotime(' +1 day'))."T".gmdate('H:m:s',strtotime('+5 hours'))." GMT+01:00";
 
 
-        $results = \App\CPU\CartManager::createShipment($height, $width, $length, $weight, $customer_email, $customer_fullname, $customer_mobile, $Date, $sellerCity, $sellerCountry, $customer_cityname, $sellerPhone, $sellerName, $sellerEmail, $customer_countrycode, $customer_postalCode);
+        $results = \App\CPU\CartManager::createShipment($height, $width, $length, $weight, $customer_email, $customer_fullname, $customer_mobile, $DateShipping, $sellerCity, $sellerCountry, $customer_cityname, $sellerPhone, $sellerName, $sellerEmail, $customer_countrycode, $customer_postalCode, $dhlAccount);
+
+        $trackingNumber = $results->shipmentTrackingNumber;
+
+//        dd($trackingNumber);
 
         foreach ($results->documents as $doc) {
             $file = $doc->content;
@@ -99,12 +107,13 @@ class ShipmentController extends Controller
 
         DB::update('update order_details set ImageName = ? where order_id = ? ', [$file_name, $request->order_id]);
 
-        $pickUp = \App\CPU\CartManager::OrderPickUp($height, $width, $length, $weight, $Date, $sellerCity, $sellerCountry, $sellerPhone, $sellerName, $sellerEmail);
+        $pickUp = \App\CPU\CartManager::OrderPickUp($height, $width, $length, $weight, $DatePickUp, $sellerCity, $sellerCountry, $sellerPhone, $sellerName, $sellerEmail,$dhlAccount);
 
         $pickUpNumber = $pickUp->dispatchConfirmationNumbers[0];
 
-
         DB::update('update order_details set orderPickUp = ? where order_id = ?', [$pickUpNumber, $request->order_id]);
+
+        DB::update('update order_details set trackingNumber = ? where order_id = ?', [$trackingNumber, $request->order_id]);
 
 
         return redirect()->back();

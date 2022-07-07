@@ -411,23 +411,20 @@
                             </div>
                             <div class="flex-start">
                                 <div class="mx-1">
-                                    <form action="{{route('shipment')}}" method="post" enctype="multipart/form-data">
-                                        @csrf
-                                        <input type="hidden" name="order_id" value="{{$order->id}}">
-                                        <input type="hidden" name="customer_email" value="{{$order->customer['email']}}">
-                                        <button type="submit" class="btn btn-primary btn-xs mt-1">
-                                            Create Shipment
-                                        </button>
-                                    </form>
-                             @if($order->shipment == "created")
+
+{{--                             @if($order->shipment == "created")--}}
+
+                                    @If($detail->file)
+                                    <span class="btn-success">download shipment files</span>
                                     <form action="{{route('download')}}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" name="order_id" value="{{$order->id}}">
-                                        <button type="submit" class="btn btn-xs">download files</button>
+                                        <button type="submit" class="btn btn-xs btn-link">download files</button>
                                     </form>
-                                 @endif
-                                    @if($detail->orderPickUp)
-                                    <span>PickUpNumber :{{$detail->orderPickUp}}</span>
+{{--                                 @endif--}}
+                                    @if($detail->trackingNumber)
+                                    <span>TrackingNumber :{{$detail->trackingNumber}}</span>
+                                    @endif
                                     @endif
                                 </div>
                             </div>
