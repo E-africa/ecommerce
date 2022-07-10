@@ -108,10 +108,17 @@
         </div>
 
         <div class="d-flex justify-content-center">
+            @if(Route::currentRouteName()=="checkout-payment")
             <span class="cart_total_value mt-2">
                 {{\App\CPU\Helpers::currency_converter($sub_total+$total_tax+$Rate-$coupon_dis-$total_discount_on_product)}}
             </span>
+                @else
+                <span class="cart_total_value mt-2">
+                {{AppCPUHelpers::currency_converter($sub_total+$total_tax-$coupon_dis-$total_discount_on_product)}}
+            </span>
+            @endif
         </div>
+
     </div>
     <div class="container mt-3">
         <div class="row p-0">
