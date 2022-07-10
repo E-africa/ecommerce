@@ -109,7 +109,7 @@
 
         <div class="d-flex justify-content-center">
             <span class="cart_total_value mt-2">
-                {{\App\CPU\Helpers::currency_converter($sub_total+$total_tax+$total_shipping_cost-$coupon_dis-$total_discount_on_product)}}
+                {{\App\CPU\Helpers::currency_converter($sub_total+$total_tax+$Rate-$coupon_dis-$total_discount_on_product)}}
             </span>
         </div>
     </div>
