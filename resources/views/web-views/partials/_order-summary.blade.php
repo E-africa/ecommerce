@@ -114,7 +114,7 @@
             </span>
                 @else
                 <span class="cart_total_value mt-2">
-                {{AppCPUHelpers::currency_converter($sub_total+$total_tax-$coupon_dis-$total_discount_on_product)}}
+                {{\App\CPU\Helpers::currency_converter($sub_total+$total_tax-$coupon_dis-$total_discount_on_product)}}
             </span>
             @endif
         </div>
