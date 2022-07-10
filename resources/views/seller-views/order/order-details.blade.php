@@ -412,8 +412,6 @@
                             <div class="flex-start">
                                 <div class="mx-1">
 
-{{--                             @if($order->shipment == "created")--}}
-
                                     @If($detail->file)
                                     <span class="btn-success">download shipment files</span>
                                     <form action="{{route('download')}}" method="post" enctype="multipart/form-data">
@@ -421,7 +419,7 @@
                                         <input type="hidden" name="order_id" value="{{$order->id}}">
                                         <button type="submit" class="btn btn-xs btn-link">download files</button>
                                     </form>
-{{--                                 @endif--}}
+
                                     @if($detail->trackingNumber)
                                     <span>TrackingNumber :{{$detail->trackingNumber}}</span>
                                     @endif

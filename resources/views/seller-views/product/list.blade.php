@@ -123,7 +123,7 @@
                                 <tr>
                                     <th>{{\App\CPU\translate('SL#')}}</th>
                                     <th>{{\App\CPU\translate('Product Name')}}</th>
-                                    <th>{{\App\CPU\translate('purchase_price')}}</th>
+{{--                                    <th>{{\App\CPU\translate('purchase_price')}}</th>--}}
                                     <th>{{\App\CPU\translate('selling_price')}}</th>
                                     <th>{{\App\CPU\translate('verify_status')}}</th>
                                     <th>{{\App\CPU\translate('Active')}} {{\App\CPU\translate('status')}}</th>
@@ -137,11 +137,12 @@
                                         <td><a href="{{route('seller.product.view',[$p['id']])}}">
                                                 {{$p['name']}}
                                             </a></td>
+{{--                                        <td>--}}
+{{--                                            {{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['purchase_price']))}}--}}
+{{--                                        {{ AppCPUBackEndHelper::set_symbol(AppCPUBackEndHelper::usd_to_currency($p['unit_price']))}}--}}
+{{--                                        </td>--}}
                                         <td>
-                                            {{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['purchase_price']))}}
-                                        </td>
-                                        <td>
-                                            {{ \App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['unit_price']))}}
+                                            {{ $p['unit_price']}}
                                         </td>
                                         <td>
                                             @if($p->request_status == 0)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Controller;
@@ -80,6 +81,9 @@ class ShipmentController extends Controller
         $length = $product->length;
         $height = $product->height;
         $width = $product->width;
+        $description = $product->meta_description;
+
+
 
         $dhlAccount = \App\CPU\CartManager::get_dhl_account($sellerCountry);
 
@@ -88,7 +92,7 @@ class ShipmentController extends Controller
         $DatePickUp = gmdate("Y-m-d",strtotime(' +1 day'))."T".gmdate('H:m:s',strtotime('+5 hours'))." GMT+01:00";
 
 
-        $results = \App\CPU\CartManager::createShipment($height, $width, $length, $weight, $customer_email, $customer_fullname, $customer_mobile, $DateShipping, $sellerCity, $sellerCountry, $customer_cityname, $sellerPhone, $sellerName, $sellerEmail, $customer_countrycode, $customer_postalCode, $dhlAccount);
+        $results = \App\CPU\CartManager::createShipment($height, $width, $length, $weight, $customer_email, $customer_fullname, $customer_mobile, $DateShipping, $sellerCity, $sellerCountry, $customer_cityname, $sellerPhone, $sellerName, $sellerEmail, $customer_countrycode, $customer_postalCode, $dhlAccount,$description);
 
         $trackingNumber = $results->shipmentTrackingNumber;
 
@@ -115,7 +119,8 @@ class ShipmentController extends Controller
 
         DB::update('update order_details set trackingNumber = ? where order_id = ?', [$trackingNumber, $request->order_id]);
 
-
+        Toastr::success('Shipment Created successfully!');
+        Toastr::success('Pickup ordered successfully check files!');
         return redirect()->back();
 
     }
@@ -251,6 +256,8 @@ class ShipmentController extends Controller
             DB::update('update products set unit_price = ? where id = ?',
                 [$price, $id]);
         }
+
+        Toastr::success('Rates Converted successfully!');
         return redirect()->back();
     }
 

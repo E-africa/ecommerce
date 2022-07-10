@@ -453,23 +453,21 @@
 
                                @endif
 
+
+
                             </div>
+                            @If($detail->file)
+                                <span class="btn-success">download shipment files</span>
+                                <form action="{{route('download')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="order_id" value="{{$order->id}}">
+                                    <button type="submit" class="btn btn-xs btn-link">download files</button>
+                                </form>
 
-{{--                            <span class="d-block">--}}
-{{--                                    {{\App\CPU\translate('Name')}} :--}}
-{{--                                <strong>{{$order->shippingAddress ? $order->shippingAddress['contact_person_name'] : "empty"}}</strong><br>--}}
-{{--                                 {{\App\CPU\translate('Country')}}:--}}
-{{--                                <strong>{{$order->shippingAddress ? $order->shippingAddress['country'] : "Empty"}}</strong><br>--}}
-{{--                                {{\App\CPU\translate('City')}}:--}}
-{{--                                <strong>{{$order->shippingAddress ? $order->shippingAddress['city'] : "Empty"}}</strong><br>--}}
-{{--                                {{\App\CPU\translate('zip_code')}} :--}}
-{{--                                <strong>{{$order->shippingAddress ? $order->shippingAddress['zip']  : "Empty"}}</strong><br>--}}
-{{--                                {{\App\CPU\translate('address')}} :--}}
-{{--                                <strong>{{$order->shippingAddress ? $order->shippingAddress['address']  : "Empty"}}</strong><br>--}}
-{{--                                {{\App\CPU\translate('Phone')}}:--}}
-{{--                                <strong>{{$order->shippingAddress ? $order->shippingAddress['phone']  : "Empty"}}</strong>--}}
-
-{{--                                </span>--}}
+                                @if($detail->trackingNumber)
+                                    <span>TrackingNumber :{{$detail->trackingNumber}}</span>
+                                @endif
+                            @endif
 
                         </div>
                 @endif

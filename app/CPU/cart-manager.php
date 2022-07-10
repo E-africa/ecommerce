@@ -824,10 +824,9 @@ class CartManager
     }
 
 
-    public static function createShipment($height,$width,$length,$weight,$customer_email,$customer_fullname,$customer_mobile,$Date,$sellerCity,$sellerCountry,$customer_cityname,$sellerPhone,$sellerName,$sellerEmail,$customer_countrycode,$customer_postalCode,$dhlAccount){
+    public static function createShipment($height,$width,$length,$weight,$customer_email,$customer_fullname,$customer_mobile,$Date,$sellerCity,$sellerCountry,$customer_cityname,$sellerPhone,$sellerName,$sellerEmail,$customer_countrycode,$customer_postalCode,$dhlAccount,$description){
 
 
-//        dd($Date);
         $client = new \GuzzleHttp\Client([
             'headers'=>array('Content-Type'=>'application/json'),
             'auth' => ['afrikamallCD', 'S!4nJ^2jX^9qB@3y'],
@@ -923,18 +922,18 @@ class CartManager
             "content" => array(
                 "unitOfMeasurement" => "metric",
                 "isCustomsDeclarable" => true,
-                "incoterm" => "DAP",
-                "description" => "Test",
+                "incoterm" => "",
+                "description" => "",
                 "packages" => array(
                     array(
                         "customerReferences" => array(
                             array(
-                                "value" => "Test Ref"
+                                "value" => ""
                             )
                         ),
                         "weight" => $weight,
-                        "description" => "test desciption.",
-                        "labelDescription" => "test label description",
+                        "description" => $description,
+                        "labelDescription" => "",
                         "dimensions" => array(
                             "length" => $length,
                             "width" => $width,
@@ -948,7 +947,7 @@ class CartManager
                     "lineItems" => array(
                         array(
                             "number" => 1,
-                            "description" => "Test Product",
+                            "description" => $description,
                             "price" => 0.4,
                             "priceCurrency" => "USD",
                             "quantity" => array(
@@ -977,7 +976,7 @@ class CartManager
                     ),
                     "remarks" => array(
                         array(
-                            "value" => "declaration remark"
+                            "value" => ""
                         )
                     ),
                     "additionalCharges" => array(
@@ -986,17 +985,17 @@ class CartManager
                             "typeCode" => "freight"
                         )
                     ),
-                    "destinationPortName" => "Prague",
+                    "destinationPortName" => "",
                     "payerVATNumber" => "12345ED",
                     "recipientReference" => "recipient reference",
                     "exporter" => array(
-                        "id" => "123",
-                        "code" => "EXPCZ"
+                        "id" => "",
+                        "code" => ""
                     ),
                     "packageMarks" => "marks",
                     "declarationNotes" => array(
                         array(
-                            "value" => "up to three declaration notes"
+                            "value" => ""
                         )
                     ),
                     "exportReference" => "export reference",

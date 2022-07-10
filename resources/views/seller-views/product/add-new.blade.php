@@ -348,13 +348,13 @@
                                                placeholder="{{\App\CPU\translate('Unit_price')}}"
                                                name="unit_price" value="{{old('unit_price')}}"  class="form-control" required>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label
-                                            class="control-label">{{\App\CPU\translate('Purchase_price')}}</label>
-                                        <input type="number" min="0" value="0" step="0.01"
-                                               placeholder="{{\App\CPU\translate('Purchase_price')}}"
-                                               name="purchase_price" value="{{old('purchase_price')}}"  class="form-control" required>
-                                    </div>
+{{--                                    <div class="col-md-6">--}}
+{{--                                        <label--}}
+{{--                                            class="control-label">{{\App\CPU\translate('Purchase_price')}}</label>--}}
+{{--                                        <input type="number" min="0" value="0" step="0.01"--}}
+{{--                                               placeholder="{{\App\CPU\translate('Purchase_price')}}"--}}
+{{--                                               name="purchase_price" value="{{old('purchase_price')}}"  class="form-control" required>--}}
+{{--                                    </div>--}}
                                 </div>
 
                                 <div class="row pt-4">
