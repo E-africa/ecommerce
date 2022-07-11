@@ -260,8 +260,7 @@
                     <div class="mb-3">
                         <span
                             class="h3 font-weight-normal text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}" style="color: #ff3c20 !important;">
-{{--                            {{\App\CPU\Helpers::get_price_range($product) }}--}}
-                            {{\App\CPU\Helpers::currency_converter($product->unit_price)}}
+                            {{\App\CPU\Helpers::get_price_range($product) }}
                         </span>
                         @if($product->discount > 0)
                             <strike style="color: #ff3c20 !important;">

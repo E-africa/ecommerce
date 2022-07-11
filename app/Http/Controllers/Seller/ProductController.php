@@ -80,7 +80,7 @@ class ProductController extends Controller
             'image' => 'required',
             'tax' => 'required|min:0',
             'unit_price' => 'required|numeric|min:1',
-//            'purchase_price' => 'required|numeric|min:1',
+            'purchase_price' => 'required|numeric|min:1',
             'currency' => 'required',
             'height' => 'required',
             'length' => 'required',
@@ -236,7 +236,7 @@ class ProductController extends Controller
         //combinations end
         $product->variation = json_encode($variations);
         $product->unit_price = Convert::usd($request->unit_price);
-//        $product->purchase_price = Convert::usd($request->purchase_price);
+        $product->purchase_price = Convert::usd($request->purchase_price);
         $product->tax = $request->tax;
         $product->tax_type = $request->tax_type;
         $product->discount = $request->discount_type == 'flat' ? Convert::usd($request->discount) : $request->discount;
@@ -374,7 +374,7 @@ class ProductController extends Controller
             'unit' => 'required',
             'tax' => 'required|min:0',
             'unit_price' => 'required|numeric|min:1',
-//            'purchase_price' => 'required|numeric|min:1',
+            'purchase_price' => 'required|numeric|min:1',
             'currency' => 'required',
             'weight' => 'required',
             'height' => 'required',
@@ -517,7 +517,7 @@ class ProductController extends Controller
         //combinations end
         $product->variation = json_encode($variations);
         $product->unit_price = Convert::usd($request->unit_price);
-//        $product->purchase_price = Convert::usd($request->purchase_price);
+        $product->purchase_price = Convert::usd($request->purchase_price);
         $product->tax = $request->tax;
         $product->tax_type = $request->tax_type;
         $product->discount = $request->discount_type == 'flat' ? Convert::usd($request->discount) : $request->discount;
@@ -648,7 +648,7 @@ class ProductController extends Controller
                 'min_qty' => $collection['min_qty'],
                 'refundable' => $collection['refundable'],
                 'unit_price' => $collection['unit_price'],
-//                'purchase_price' => $collection['purchase_price'],
+                'purchase_price' => $collection['purchase_price'],
                 'tax' => $collection['tax'],
                 'discount' => $collection['discount'],
                 'discount_type' => $collection['discount_type'],
@@ -702,7 +702,7 @@ class ProductController extends Controller
                 'refundable' => $item->refundable,
                 'youtube_video_url' => $item->video_url,
                 'unit_price' => $item->unit_price,
-//                'purchase_price' => $item->purchase_price,
+                'purchase_price' => $item->purchase_price,
                 'tax' => $item->tax,
                 'discount' => $item->discount,
                 'discount_type' => $item->discount_type,

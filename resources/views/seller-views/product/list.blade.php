@@ -137,10 +137,10 @@
                                         <td><a href="{{route('seller.product.view',[$p['id']])}}">
                                                 {{$p['name']}}
                                             </a></td>
-{{--                                        <td>--}}
+                                        <td>
 {{--                                            {{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['purchase_price']))}}--}}
 {{--                                        {{ AppCPUBackEndHelper::set_symbol(AppCPUBackEndHelper::usd_to_currency($p['unit_price']))}}--}}
-{{--                                        </td>--}}
+                                        </td>
                                         <td>
                                             {{ $p['unit_price']}}
                                         </td>
