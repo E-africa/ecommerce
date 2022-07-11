@@ -668,7 +668,7 @@ class Helpers
         if (!is_null($position) && $position == 'left') {
             $string = currency_symbol() . '' . number_format($amount, 2);
         } else {
-            $string = number_format($amount, 2) . '' . currency_symbol();
+            $string = currency_symbol().''.number_format($amount, 2);
         }
         return $string;
     }
