@@ -699,7 +699,7 @@ class CartManager
                 'auth' => ['afrikamallCD', 'S!4nJ^2jX^9qB@3y'],
             ]);
 
-        $url = "https://express.api.dhl.com/mydhlapi/test/rates";
+        $url = "https://express.api.dhl.com/mydhlapi/rates";
 
         $body = array (
             'customerDetails' =>
