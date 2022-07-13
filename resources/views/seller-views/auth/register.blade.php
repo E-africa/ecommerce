@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                 <label for="name">{{\App\CPU\translate('City')}}</label>
-                                    <input type="text" class="form-control form-control-user" id="exampleCity" name="l_name" value="{{old('city')}}" placeholder="City" required>
+                                    <input type="text" class="form-control form-control-user" id="exampleCity" name="city" value="{{old('city')}}" placeholder="City" required>
                                 </div>
                             </div>
                             <div class="form-group row">
