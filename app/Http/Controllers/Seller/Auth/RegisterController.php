@@ -37,6 +37,7 @@ class RegisterController extends Controller
             $seller->email = $request->email;
 
 
+
             switch ($request->country){
                 case('Kenya'):
                     $seller->country = 'ke';
@@ -74,6 +75,7 @@ class RegisterController extends Controller
             $shop = new Shop();
             $shop->seller_id = $seller->id;
             $shop->name = $request->shop_name;
+            $shop->city = $request->city;
             $shop->address = $request->shop_address;
             $shop->contact = $request->phone;
             $shop->image = ImageManager::upload('shop/', 'png', $request->file('logo'));
