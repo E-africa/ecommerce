@@ -25,7 +25,8 @@ class RegisterController extends Controller
             'password' => 'required|min:8',
 
             'shop_address'=>'required',
-            'country'=>'required'
+            'country'=>'required',
+            'city' => 'required'
 
         ]);
 
