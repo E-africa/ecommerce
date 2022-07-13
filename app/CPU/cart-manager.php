@@ -131,6 +131,8 @@ class CartManager
             case ("ma"):
                 $City = "Agadir";
                break;
+            case ("ng"):
+                $city = "Abuja";
             default:
                 $City = "Kinshasa";
 
