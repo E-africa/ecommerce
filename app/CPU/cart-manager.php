@@ -111,35 +111,9 @@ class CartManager
     }
     public static function get_seller_city($seller_id){
 
-        $seller = Seller::find($seller_id);
-        $seller_country = Str::lower($seller->country);
-
-        $City = "";
-        switch ($seller_country) {
-            case ("ke"):
-                $City = "Nairobi";
-                break;
-            case ("cd"):
-                $City = "Kinshasa";
-                break;
-            case ("mz"):
-                $City = "Maputo";
-                break;
-            case ("na"):
-                $City = "Windhock";
-                break;
-            case ("ma"):
-                $City = "Agadir";
-               break;
-            case ("ng"):
-                $city = "Abuja";
-            default:
-                $City = "Kinshasa";
-
-        }
-
+     $shop =   Shop::where('seller_id',$seller_id);
+     $City = $shop->city;
         return $City;
-
     }
 
     public static function get_product_weight($product_id){
