@@ -111,7 +111,7 @@ class CartManager
     }
     public static function get_seller_city($seller_id){
 
-     $shop = Shop::where('seller_id',$seller_id)->get();
+     $shop = Shop::where('seller_id',$seller_id)->first();
      $City = $shop->city;
         return $City;
     }
