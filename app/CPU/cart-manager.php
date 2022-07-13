@@ -121,9 +121,9 @@ class CartManager
         $product = Product::find($product_id);
         $product_weight = $product->weight;
 
-        if($product_weight == null){
-            $product_weight = 5;
-        }
+//        if($product_weight == null){
+//            $product_weight = 5;
+//        }
         return $product_weight;
     }
 
@@ -132,9 +132,9 @@ class CartManager
         $product = Product::find($product_id);
         $product_length = $product->length;
 
-        if($product_length == null){
-            $product_length = 5;
-        }
+//        if($product_length == null){
+//            $product_length = 5;
+//        }
         return $product_length;
     }
 
@@ -144,10 +144,22 @@ class CartManager
 
         $product_width = $product->width;
 
-        if($product_width == null){
-            $product_width = 5;
-        }
+//        if($product_width == null){
+//            $product_width = 5;
+//        }
         return $product_width;
+    }
+
+    public static function get_product_height($product_id){
+
+        $product = Product::find($product_id);
+
+        $product_height = $product->height;
+
+//        if($product_width == null){
+//            $product_width = 5;
+//        }
+        return $product_height;
     }
 
     public static function get_customer_postalCode($customer_id){
@@ -692,7 +704,7 @@ class CartManager
         ];
     }
 
-    public static function getShippingFee($seller_country_code,$Seller_city,$product_weight,$product_width,$product_length,$customer_cityname,$customer_countrycode){
+    public static function getShippingFee($seller_country_code,$Seller_city,$product_weight,$product_height,$product_width,$product_length,$customer_cityname,$customer_countrycode){
 
         $client = new \GuzzleHttp\Client([
                 'headers'=>array('Content-Type'=>'application/json'),
@@ -773,7 +785,7 @@ class CartManager
                                 array (
                                     'length' => $product_length,
                                     'width' => $product_width,
-                                    'height' => 5,
+                                    'height' => $product_height,
                                 ),
                         ),
                 ),

@@ -45,11 +45,12 @@
                 @php($seller_country_code =\App\CPU\CartManager::get_seller_country_code($cartItem['seller_id']))
                 @php($Seller_city = \App\CPU\CartManager::get_Seller_city($cartItem['seller_id']))
                 @php($product_weight = \App\CPU\CartManager::get_product_weight($cartItem['product_id']))
+                @php($product_height = \App\CPU\CartManager::get_product_height($cartItem['product_id']))
                 @php($product_width = \App\CPU\CartManager::get_product_width($cartItem['product_id']))
                 @php($product_length = \App\CPU\CartManager::get_product_length($cartItem['product_id']))
                 @php($customer_cityname = \App\CPU\CartManager::get_customer_cityname($cartItem['customer_id']))
                 @php($customer_countrycode = \App\CPU\CartManager::get_customer_country_code($cartItem['customer_id']))
-                @php($Rate = \App\CPU\CartManager::getShippingFee($seller_country_code,$Seller_city,$product_weight,$product_width,$product_length,$customer_cityname,$customer_countrycode))
+                @php($Rate = \App\CPU\CartManager::getShippingFee($seller_country_code,$Seller_city,$product_weight,$product_height,$product_width,$product_length,$customer_cityname,$customer_countrycode))
         @endif
         <div class="d-flex justify-content-between">
             <span class="cart_title">Tax</span>
