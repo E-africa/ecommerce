@@ -34,8 +34,7 @@
                                     <input type="text" class="form-control form-control-user" id="exampleLastName" name="l_name" value="{{old('l_name')}}" placeholder="Last Name" required>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label for="name">{{\App\CPU\translate('Country')}}</label>
-                                   <input type="text" class="form-control form-control-user" id="exampleLastName" name="country" value="{{old('country')}}" placeholder="country" required>--}}
+                                <label for="name">{{\App\CPU\translate('Country')}}</label>
                                     <select name="country" class="form-control form-control-user " id="country" required>
                                         <option value="Congo">DR Congo</option>
                                         <option value="Kenya">Kenya</option>
@@ -44,9 +43,11 @@
                                         <option value="Morocco">Morocco</option>
                                         <option value="Mozambique">Mozambique</option>
                                     </select>
-
                                 </div>
-
+                                <div class="col-sm-6">
+                                <label for="name">{{\App\CPU\translate('City')}}</label>
+                                    <input type="text" class="form-control form-control-user" id="exampleCity" name="l_name" value="{{old('city')}}" placeholder="City" required>
+                                </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0 mt-4">
