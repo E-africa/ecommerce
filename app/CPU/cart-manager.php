@@ -719,7 +719,7 @@ class CartManager
                     'shipperDetails' =>
                         array (
                             'postalCode' => '',
-                            'cityName' => $Seller_city,
+                            'cityName' => "Kinshasa",
                             'countryCode' => $seller_country_code,
                             'addressLine1' => 'addres1',
                             'addressLine2' => 'addres2',
@@ -780,12 +780,12 @@ class CartManager
                 array (
                     0 =>
                         array (
-                            'weight' => $product_weight,
+                            'weight' => "1",
                             'dimensions' =>
                                 array (
-                                    'length' => $product_length,
-                                    'width' => $product_width,
-                                    'height' => $product_height,
+                                    'length' => "1",
+                                    'width' => "1",
+                                    'height' => "1",
                                 ),
                         ),
                 ),
@@ -798,8 +798,6 @@ class CartManager
         $Returned_array = $res->getBody()->getContents();
         $Res1 = json_decode($Returned_array);
 
-//        dd($Res1);
-
         foreach ($Res1->products as $product){
             foreach ($product->totalPrice as $TotalPrice){
                 if($TotalPrice->priceCurrency == "USD"){
@@ -807,7 +805,7 @@ class CartManager
                 }
             }
         }
-
+//        dd($return);
    return $return;
     }
 
