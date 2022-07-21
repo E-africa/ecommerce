@@ -50,7 +50,7 @@
                 @php($product_length = \App\CPU\CartManager::get_product_length($cartItem['product_id']))
                 @php($customer_cityname = \App\CPU\CartManager::get_customer_cityname($cartItem['customer_id']))
                 @php($customer_countrycode = \App\CPU\CartManager::get_customer_country_code($cartItem['customer_id']))
-            @php(dd($product_weight,$product_height,$product_width,$product_length))
+{{--                @php(dd($product_weight))--}}
                 @php($Rate = \App\CPU\CartManager::getShippingFee($seller_country_code,$Seller_city,$product_weight,$product_height,$product_width,$product_length,$customer_cityname,$customer_countrycode))
         @endif
         <div class="d-flex justify-content-between">

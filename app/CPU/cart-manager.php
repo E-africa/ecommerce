@@ -706,6 +706,11 @@ class CartManager
 
     public static function getShippingFee($seller_country_code,$Seller_city,$product_weight,$product_height,$product_width,$product_length,$customer_cityname,$customer_countrycode){
 
+        $dhlaccount = self::get_dhl_account($seller_country_code);
+
+        $Date = gmdate("Y-m-d",strtotime(' +1 day'))."T".gmdate('H:m:s',strtotime('+5 hours'))." GMT+01:00";
+
+
         $client = new \GuzzleHttp\Client([
                 'headers'=>array('Content-Type'=>'application/json'),
                 'auth' => ['afrikamallCD', 'S!4nJ^2jX^9qB@3y'],
@@ -719,12 +724,12 @@ class CartManager
                     'shipperDetails' =>
                         array (
                             'postalCode' => '',
-                            'cityName' => "Kinshasa",
+                            'cityName' => $Seller_city,
                             'countryCode' => $seller_country_code,
                             'addressLine1' => 'addres1',
                             'addressLine2' => 'addres2',
                             'addressLine3' => 'addres3',
-                            'countyName' => 'Kinshasa',
+                            'countyName' => $Seller_city,
                         ),
                     'receiverDetails' =>
                         array (
@@ -743,7 +748,7 @@ class CartManager
                     0 =>
                         array (
                             'typeCode' => 'shipper',
-                            'number' => '318014863',
+                            'number' => "$dhlaccount",
                         ),
                 ),
             'productCode' => 'P',
@@ -760,7 +765,7 @@ class CartManager
                         ),
                 ),
             'payerCountryCode' => 'CD',
-            'plannedShippingDateAndTime' => '2022-02-18T13:00:00GMT+00:00',
+            'plannedShippingDateAndTime' => $Date,
             'unitOfMeasurement' => 'metric',
             'isCustomsDeclarable' => true,
             'monetaryAmount' =>
@@ -780,12 +785,12 @@ class CartManager
                 array (
                     0 =>
                         array (
-                            'weight' => "1",
+                            'weight' => $product_weight,
                             'dimensions' =>
                                 array (
-                                    'length' => "1",
-                                    'width' => "1",
-                                    'height' => "1",
+                                    'length' => $product_length,
+                                    'width' => $product_width,
+                                    'height' => $product_height,
                                 ),
                         ),
                 ),
