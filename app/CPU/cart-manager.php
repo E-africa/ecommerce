@@ -806,12 +806,12 @@ class CartManager
         foreach ($Res1->products as $product){
             foreach ($product->totalPrice as $TotalPrice){
                 if($TotalPrice->priceCurrency == "USD"){
-                    $return =  $TotalPrice->price;
+                    $ToBeReturned =  $TotalPrice->price;
                 }
             }
         }
 //        dd($return);
-   return $return;
+        return $ToBeReturned;
     }
 
 
