@@ -415,7 +415,7 @@
                         @include('web-views.partials._single-product',['product'=>$product])
                         {{--<hr class="d-sm-none">--}}
                     </div>
-                @endforeach      
+                @endforeach
             </div>
         </section>
     @endif
@@ -1018,10 +1018,10 @@
             </div>
         {{--<hr class="view_border">--}}
         <!-- Grid-->
-            <div class="row mt-2 mb-3">
+            <div class="row mt-2 owl-carousel owl-theme">
                 @foreach($featured_products as $product)
-                    <div class="col-lg-2 col-md-6 col-sm-6 col-8 mb-2 text-center">
-                        @include('web-views.partials._single-product',['product'=>$product])
+                    <div class="col-lg-2 col-md-6 col-sm-6 col-6 mb-2">
+                        @include('web-views.partials._mobile-single-product',['product'=>$product])
                         {{--<hr class="d-sm-none">--}}
                     </div>
                 @endforeach
@@ -1186,17 +1186,16 @@
                     </div>
                 </div>
 
-                <div class="row mt-2 mb-3">
+                <div class="row mt-2 owl-carousel owl-theme">
                     @foreach($latest_products as $product)
-                        <div class="col-xl-3 col-sm-4 col-6 mb-2">
-                            @include('web-views.partials._single-product',['product'=>$product])
+                        <div class="col-xl-3 col-sm-4 col-4 mb-2">
+                            @include('web-views.partials._mobile-single-product',['product'=>$product])
                         </div>
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
-
     {{--categries--}}
     <section class="container rtl">
         <!-- Heading-->
@@ -1288,11 +1287,11 @@
                     </div>
                 </div>
 
-                <div class="row mt-2 mb-3">
+                <div class="row mt-2 owl-carousel owl-theme">
                     @foreach(\App\CPU\CategoryManager::products($category['id']) as $key=>$product)
                         @if($key<12)
                             <div class="col-xl-2 col-sm-3 col-6" style="margin-bottom: 10px">
-                                @include('web-views.partials._single-product',['product'=>$product])
+                                @include('web-views.partials._mobile-single-product',['product'=>$product])
                             </div>
                         @endif
                     @endforeach
@@ -1553,6 +1552,72 @@
                 }
             }
         })
+
+
+        // $('#mobile-featured').owlCarousel({
+        //     loop: true,
+        //     autoplay: false,
+        //     margin: 5,
+        //     nav: true,
+        //     //navText: ["<i class='czi-arrow-left'></i>", "<i class='czi-arrow-right'></i>"],
+        //     dots: true,
+        //     autoplayHoverPause: true,
+        //     // center: true,
+        //     responsive: {
+        //         //X-Small
+        //         0: {
+        //             items: 1
+        //         },
+        //         360: {
+        //             items: 1
+        //         },
+        //         375: {
+        //             items: 1
+        //         },
+        //         540: {
+        //             items: 2
+        //         },
+        //         //Small
+        //         576: {
+        //             items: 3
+        //         },
+        //         //Medium
+        //         768: {
+        //             items: 3
+        //         },
+        //         //Large
+        //         992: {
+        //             items: 3
+        //         },
+        //         //Extra large
+        //         1200: {
+        //             items: 3
+        //         },
+        //         //Extra extra large
+        //         1400: {
+        //             items: 3
+        //         }
+        //     }
+        // })
+
+        jQuery(document).ready(function($){
+        $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        nav:true,
+        responsive:{
+            0:{
+            items:1
+            },
+            600:{
+            items:3
+            },
+            1000:{
+            items:5
+            }
+        }
+        })
+    })
     </script>
 
     <script>
